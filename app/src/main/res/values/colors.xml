@@ -7,4 +7,11 @@
     <color name="keyboardAiKey">#3D8BFF</color>
     <color name="suggestionChip">#262F37</color>
     <color name="suggestionChipText">#FFFFFF</color>
+    <color name="gradient_start">#3D8BFF</color>
+    <color name="gradient_end">#1E3A5F</color>
+    <color name="card_background">#2A2A2A</color>
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#B3B3B3</color>
+    <color name="button_primary">#3D8BFF</color>
+    <color name="button_secondary">#30404B</color>
 </resources>

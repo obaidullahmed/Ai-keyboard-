@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">AI Reply Keyboard</string>
+    <string name="headline">AI-Powered Keyboard</string>
+    <string name="subtitle">Enhance your typing with intelligent AI features</string>
+    <string name="ai_reply">AI Reply</string>
+    <string name="tone_changer">Tone Changer</string>
+    <string name="translate">Translate</string>
+    <string name="grammar_check">Grammar Check</string>
+    <string name="summarize">Summarize</string>
+    <string name="continue_writing">Continue Writing</string>
+    <string name="enable_keyboard">Enable Keyboard</string>
+    <string name="select_keyboard">Select Keyboard</string>
+    <string name="continue">Continue</string>
 </resources>
