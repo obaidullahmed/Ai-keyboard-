@@ -38,7 +38,7 @@ APP_HOME=$SAVED
 DEFAULT_JVM_OPTS='"-Xmx64m" "-Xms64m"'
 
 # Use the maximum available, or set MAX_FD != unlimited.
-MAX_FD=maximum
+MAX_FD=65536
 
 warn () {
     echo "$*"
@@ -106,7 +106,7 @@ if ! "$cygwin" && ! "$darwin" && ! "$nonstop" ; then
         MAX_FD=$(expr $MAX_FD)
         ;;
       *)
-        MAX_FD=maximum
+        # MAX_FD=maximum
         ;;
     esac
     ulimit -n $MAX_FD || warn "Could not set maximum file descriptor limit: $MAX_FD"
