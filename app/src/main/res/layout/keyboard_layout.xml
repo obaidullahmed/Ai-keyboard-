@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/keyboardRoot"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp"
+    android:background="#FF101214">
+
+    <LinearLayout
+        android:id="@+id/suggestionStrip"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="8dp"
+        android:background="#1A1E25">
+
+        <HorizontalScrollView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:fillViewport="true"
+            android:overScrollMode="never">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/suggestionChip1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="44dp"
+                    android:layout_marginEnd="8dp"
+                    android:gravity="center"
+                    android:background="@drawable/suggestion_chip_background"
+                    android:text="Tap AI for reply"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:paddingLeft="14dp"
+                    android:paddingRight="14dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp" />
+
+                <TextView
+                    android:id="@+id/suggestionChip2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="44dp"
+                    android:layout_marginEnd="8dp"
+                    android:gravity="center"
+                    android:background="@drawable/suggestion_chip_background"
+                    android:text="Need context"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:paddingLeft="14dp"
+                    android:paddingRight="14dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp" />
+
+                <TextView
+                    android:id="@+id/suggestionChip3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="44dp"
+                    android:gravity="center"
+                    android:background="@drawable/suggestion_chip_background"
+                    android:text="Manual trigger only"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:paddingLeft="14dp"
+                    android:paddingRight="14dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp" />
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <ProgressBar
+            android:id="@+id/loadingIndicator"
+            style="?android:attr/progressBarStyleSmall"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:visibility="gone"
+            android:indeterminateTint="#FFFFFF" />
+    </LinearLayout>
+
+    <GridLayout
+        android:id="@+id/keyboardKeys"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="10"
+        android:rowCount="4"
+        android:paddingTop="8dp">
+
+        <!-- Row 1 -->
+        <Button
+            android:id="@+id/keyQ"
+            style="@style/KeyboardKeyStyle"
+            android:text="Q" />
+        <Button
+            android:id="@+id/keyW"
+            style="@style/KeyboardKeyStyle"
+            android:text="W" />
+        <Button
+            android:id="@+id/keyE"
+            style="@style/KeyboardKeyStyle"
+            android:text="E" />
+        <Button
+            android:id="@+id/keyR"
+            style="@style/KeyboardKeyStyle"
+            android:text="R" />
+        <Button
+            android:id="@+id/keyT"
+            style="@style/KeyboardKeyStyle"
+            android:text="T" />
+        <Button
+            android:id="@+id/keyY"
+            style="@style/KeyboardKeyStyle"
+            android:text="Y" />
+        <Button
+            android:id="@+id/keyU"
+            style="@style/KeyboardKeyStyle"
+            android:text="U" />
+        <Button
+            android:id="@+id/keyI"
+            style="@style/KeyboardKeyStyle"
+            android:text="I" />
+        <Button
+            android:id="@+id/keyO"
+            style="@style/KeyboardKeyStyle"
+            android:text="O" />
+        <Button
+            android:id="@+id/keyP"
+            style="@style/KeyboardKeyStyle"
+            android:text="P" />
+
+        <!-- Row 2 -->
+        <Button
+            android:id="@+id/keyA"
+            style="@style/KeyboardKeyStyle"
+            android:text="A" />
+        <Button
+            android:id="@+id/keyS"
+            style="@style/KeyboardKeyStyle"
+            android:text="S" />
+        <Button
+            android:id="@+id/keyD"
+            style="@style/KeyboardKeyStyle"
+            android:text="D" />
+        <Button
+            android:id="@+id/keyF"
+            style="@style/KeyboardKeyStyle"
+            android:text="F" />
+        <Button
+            android:id="@+id/keyG"
+            style="@style/KeyboardKeyStyle"
+            android:text="G" />
+        <Button
+            android:id="@+id/keyH"
+            style="@style/KeyboardKeyStyle"
+            android:text="H" />
+        <Button
+            android:id="@+id/keyJ"
+            style="@style/KeyboardKeyStyle"
+            android:text="J" />
+        <Button
+            android:id="@+id/keyK"
+            style="@style/KeyboardKeyStyle"
+            android:text="K" />
+        <Button
+            android:id="@+id/keyL"
+            style="@style/KeyboardKeyStyle"
+            android:text="L" />
+        <Button
+            android:id="@+id/keyBackspace"
+            style="@style/KeyboardKeyStyle"
+            android:text="⌫" />
+
+        <!-- Row 3 -->
+        <Button
+            android:id="@+id/keyZ"
+            style="@style/KeyboardKeyStyle"
+            android:text="Z" />
+        <Button
+            android:id="@+id/keyX"
+            style="@style/KeyboardKeyStyle"
+            android:text="X" />
+        <Button
+            android:id="@+id/keyC"
+            style="@style/KeyboardKeyStyle"
+            android:text="C" />
+        <Button
+            android:id="@+id/keyV"
+            style="@style/KeyboardKeyStyle"
+            android:text="V" />
+        <Button
+            android:id="@+id/keyB"
+            style="@style/KeyboardKeyStyle"
+            android:text="B" />
+        <Button
+            android:id="@+id/keyN"
+            style="@style/KeyboardKeyStyle"
+            android:text="N" />
+        <Button
+            android:id="@+id/keyM"
+            style="@style/KeyboardKeyStyle"
+            android:text="M" />
+        <Button
+            android:id="@+id/keySpace"
+            style="@style/KeyboardActionKeyStyle"
+            android:text="Space"
+            android:layout_columnSpan="3" />
+        <Button
+            android:id="@+id/keyEnter"
+            style="@style/KeyboardActionKeyStyle"
+            android:text="Enter" />
+
+        <!-- Row 4 -->
+        <Button
+            android:id="@+id/keyAiAction"
+            style="@style/KeyboardAiKeyStyle"
+            android:text="AI" 
+            android:layout_columnSpan="10" />
+    </GridLayout>
+</LinearLayout>

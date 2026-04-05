@@ -1,0 +1,34 @@
+# Gradle
+.gradle/
+build/
+gradle/wrapper/*.jar
+
+# Android
+local.properties
+.idea/
+*.iml
+*.apk
+*.aar
+.DS_Store
+
+# Build output
+captures/
+.externalNativeBuild
+.cxx
+
+# Local environment
+.env
+.env.local
+
+# IDE
+.vscode/
+*.swp
+*.swo
+*~
+.classpath
+.project
+.settings
+
+# Generated files
+gen/
+out/

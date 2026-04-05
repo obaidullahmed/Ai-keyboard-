@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.AIKeyboard" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="android:windowBackground">#FF101214</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <style name="KeyboardKeyStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:layout_margin">2dp</item>
+        <item name="android:layout_rowWeight">1</item>
+        <item name="android:layout_columnWeight">1</item>
+        <item name="android:background">@color/keyboardKey</item>
+        <item name="android:textColor">@color/keyboardKeyText</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="KeyboardActionKeyStyle" parent="KeyboardKeyStyle">
+        <item name="android:background">@color/keyboardActionKey</item>
+    </style>
+
+    <style name="KeyboardAiKeyStyle" parent="KeyboardActionKeyStyle">
+        <item name="android:background">@color/keyboardAiKey</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+</resources>
