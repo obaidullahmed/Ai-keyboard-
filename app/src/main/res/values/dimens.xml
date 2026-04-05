@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Spacing scale -->
+    <dimen name="spacing_xs">4dp</dimen>
+    <dimen name="spacing_sm">8dp</dimen>
+    <dimen name="spacing_md">16dp</dimen>
+    <dimen name="spacing_lg">24dp</dimen>
+    <dimen name="spacing_xl">32dp</dimen>
+    <dimen name="spacing_xxl">40dp</dimen>
+
+    <!-- Corner radius scale -->
+    <dimen name="radius_small">10dp</dimen>
+    <dimen name="radius_medium">18dp</dimen>
+    <dimen name="radius_large">26dp</dimen>
+    <dimen name="radius_xl">34dp</dimen>
+    <dimen name="radius_pill">999dp</dimen>
+
+    <!-- Elevation tokens -->
+    <dimen name="elevation_card">4dp</dimen>
+    <dimen name="elevation_modal">14dp</dimen>
+    <dimen name="elevation_fab">10dp</dimen>
+    <dimen name="elevation_suggestion_chip">2dp</dimen>
+
+    <!-- Motion tokens -->
+    <integer name="motion_duration_fast">100</integer>
+    <integer name="motion_duration_normal">220</integer>
+    <integer name="motion_duration_slow">320</integer>
+    <string name="motion_interpolator_standard">fast_out_slow_in</string>
+    <string name="motion_interpolator_fade">linear</string>
+    <string name="motion_interpolator_slide">fast_out_slow_in</string>
+    <fraction name="motion_press_scale">0.96</fraction>
+</resources>

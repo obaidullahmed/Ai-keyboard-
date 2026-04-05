@@ -1,29 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="keyboardBackground">#FF101214</color>
-    <color name="keyboardKey">#1F2A34</color>
-    <color name="keyboardKeyText">#FFFFFF</color>
-    <color name="keyboardActionKey">#30404B</color>
-    <color name="keyboardAiKey">#3D8BFF</color>
-    <color name="suggestionChip">#262F37</color>
-    <color name="suggestionChipText">#FFFFFF</color>
-    <color name="gradient_start">#3D8BFF</color>
-    <color name="gradient_end">#1E3A5F</color>
-    <color name="card_background">#2A2A2A</color>
-    <color name="text_primary">#FFFFFF</color>
-    <color name="text_secondary">#B3B3B3</color>
-    <color name="button_primary">#3D8BFF</color>
-    <color name="button_secondary">#30404B</color>
-    <color name="settingsBackground">#FF0F1317</color>
-    <color name="settingsCard">#1B242D</color>
-    <color name="settingsDivider">#26313D</color>
-    <color name="settingsItemIcon">#A3C9FF</color>
-    <color name="themeDarkBackground">#FF0F1317</color>
-    <color name="themeSoftBackground">#FF1E2630</color>
-    <color name="themeNeonBackground">#FF112233</color>
-    <color name="keyboardBackground">#FF101214</color>
-    <color name="keyboardKey">#FF1F2A34</color>
-    <color name="keyboardKeyText">#FFFFFFFF</color>
-    <color name="keyboardActionKey">#FF30404B</color>
-    <color name="keyboardAiKey">#FF3D8BFF</color>
+    <!-- Premium dark-first palette -->
+    <color name="colorBackground">#0D141E</color>
+    <color name="colorSurface">#131D27</color>
+    <color name="colorElevatedSurface">#1E2B38</color>
+    <color name="colorKeyboardBackground">#0F161F</color>
+    <color name="colorKeyBackground">#172639</color>
+    <color name="colorKeyPressedBackground">#3268FF</color>
+    <color name="colorPrimary">#4D8DFF</color>
+    <color name="colorSecondary">#70B7FF</color>
+    <color name="colorSuccess">#34D399</color>
+    <color name="colorWarning">#FBBF24</color>
+    <color name="colorError">#F87171</color>
+    <color name="colorTextPrimary">#F8FAFC</color>
+    <color name="colorTextSecondary">#A7B3C3</color>
+    <color name="colorTextMuted">#7B8A9B</color>
+    <color name="colorDivider">#24335B</color>
+    <color name="colorChipBackground">#17243D</color>
+    <color name="colorCardBackground">#111A24</color>
+    <color name="colorOverlay">#0B131F</color>
+    <color name="colorGradientStart">#4D8DFF</color>
+    <color name="colorGradientEnd">#173B73</color>
+
+    <!-- Legacy compatibility aliases -->
+    <item name="keyboardBackground" type="color">@color/colorKeyboardBackground</item>
+    <item name="keyboardKey" type="color">@color/colorKeyBackground</item>
+    <item name="keyboardKeyText" type="color">@color/colorTextPrimary</item>
+    <item name="keyboardActionKey" type="color">@color/colorKeyPressedBackground</item>
+    <item name="keyboardAiKey" type="color">@color/colorPrimary</item>
+    <item name="suggestionChip" type="color">@color/colorChipBackground</item>
+    <item name="suggestionChipText" type="color">@color/colorTextPrimary</item>
+    <item name="gradient_start" type="color">@color/colorGradientStart</item>
+    <item name="gradient_end" type="color">@color/colorGradientEnd</item>
+    <item name="card_background" type="color">@color/colorCardBackground</item>
+    <item name="text_primary" type="color">@color/colorTextPrimary</item>
+    <item name="text_secondary" type="color">@color/colorTextSecondary</item>
+    <item name="button_primary" type="color">@color/colorPrimary</item>
+    <item name="button_secondary" type="color">@color/colorSecondary</item>
+    <item name="settingsBackground" type="color">@color/colorBackground</item>
+    <item name="settingsCard" type="color">@color/colorElevatedSurface</item>
+    <item name="settingsDivider" type="color">@color/colorDivider</item>
+    <item name="settingsItemIcon" type="color">@color/colorSecondary</item>
+    <item name="themeDarkBackground" type="color">@color/colorBackground</item>
+    <item name="themeSoftBackground" type="color">@color/colorSurface</item>
+    <item name="themeNeonBackground" type="color">@color/colorPrimary</item>
 </resources>

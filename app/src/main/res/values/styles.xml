@@ -1,45 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.AIKeyboard" parent="Theme.AppCompat.DayNight.NoActionBar">
-        <item name="android:windowBackground">#FF101214</item>
-        <item name="android:textColor">#FFFFFF</item>
+    <!-- Typography tokens -->
+    <style name="TextAppearance.DisplayTitle" parent="TextAppearance.AppCompat.Display1">
+        <item name="android:textSize">32sp</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
     </style>
 
-    <style name="KeyboardKeyStyle">
+    <style name="TextAppearance.ScreenTitle" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="TextAppearance.SectionTitle" parent="TextAppearance.AppCompat.Subhead">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/colorTextSecondary</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="TextAppearance.Body" parent="TextAppearance.AppCompat.Body1">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="TextAppearance.BodySmall" parent="TextAppearance.AppCompat.Body2">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/colorTextSecondary</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="TextAppearance.Caption" parent="TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/colorTextMuted</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="TextAppearance.ButtonText" parent="TextAppearance.AppCompat.Button">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="TextAppearance.KeyboardKey" parent="TextAppearance.AppCompat.Body1">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="TextAppearance.SuggestionText" parent="TextAppearance.AppCompat.Body2">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <!-- Component tokens -->
+    <style name="Widget.Token.KeyboardKey">
         <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">48dp</item>
-        <item name="android:layout_margin">2dp</item>
+        <item name="android:layout_height">56dp</item>
+        <item name="android:layout_margin">@dimen/spacing_xs</item>
         <item name="android:layout_rowWeight">1</item>
         <item name="android:layout_columnWeight">1</item>
-        <item name="android:background">@color/keyboardKey</item>
-        <item name="android:textColor">@color/keyboardKeyText</item>
+        <item name="android:background">@drawable/shape_keyboard_key</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
         <item name="android:textSize">16sp</item>
         <item name="android:fontFamily">sans-serif-medium</item>
     </style>
 
-    <style name="KeyboardActionKeyStyle" parent="KeyboardKeyStyle">
-        <item name="android:background">@color/keyboardActionKey</item>
+    <style name="KeyboardKeyStyle" parent="Widget.Token.KeyboardKey" />
+
+    <style name="KeyboardActionKeyStyle" parent="Widget.Token.KeyboardKey">
+        <item name="android:background">@drawable/shape_keyboard_action_key</item>
     </style>
 
-    <style name="KeyboardAiKeyStyle" parent="KeyboardActionKeyStyle">
-        <item name="android:background">@color/keyboardAiKey</item>
+    <style name="KeyboardAiKeyStyle" parent="Widget.Token.KeyboardKey">
+        <item name="android:background">@drawable/shape_keyboard_ai_key</item>
         <item name="android:textAllCaps">true</item>
     </style>
 
-    <style name="Theme.Settings" parent="Theme.AppCompat.DayNight.NoActionBar">
-        <item name="android:windowBackground">#FF0F1317</item>
-        <item name="android:colorBackground">#FF0F1317</item>
-        <item name="android:textColor">#FFFFFFFF</item>
-        <item name="android:textColorPrimary">#FFFFFFFF</item>
-        <item name="android:textColorSecondary">#FFB3B3B3</item>
-        <item name="android:statusBarColor">#FF0A0D11</item>
-        <item name="android:navigationBarColor">#FF0A0D11</item>
-        <item name="android:windowLightStatusBar">false</item>
+    <style name="Widget.Token.CTAButton" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/shape_button_primary</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="android:textAppearance">@style/TextAppearance.ButtonText</item>
+        <item name="android:paddingLeft">@dimen/spacing_lg</item>
+        <item name="android:paddingRight">@dimen/spacing_lg</item>
+        <item name="android:paddingTop">@dimen/spacing_sm</item>
+        <item name="android:paddingBottom">@dimen/spacing_sm</item>
     </style>
 
-    <style name="Widget.Toolbar.Dark" parent="Widget.AppCompat.Toolbar">
-        <item name="android:background">#FF11161B</item>
-        <item name="titleTextColor">@color/text_primary</item>
-        <item name="subtitleTextColor">@color/text_secondary</item>
+    <style name="Widget.Token.AIButton" parent="Widget.Token.CTAButton" />
+
+    <style name="Widget.Token.SuggestionChip" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/shape_suggestion_chip</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="android:textAppearance">@style/TextAppearance.SuggestionText</item>
+        <item name="android:paddingLeft">@dimen/spacing_sm</item>
+        <item name="android:paddingRight">@dimen/spacing_sm</item>
+        <item name="android:minHeight">@dimen/spacing_lg</item>
     </style>
+
+    <style name="Widget.Token.OnboardingCard" parent="Widget.AppCompat.CardView">
+        <item name="android:background">@drawable/shape_surface_card</item>
+        <item name="android:padding">@dimen/spacing_lg</item>
+    </style>
+
+    <style name="Widget.Token.SettingsRow" parent="Widget.AppCompat.CardView">
+        <item name="android:background">@drawable/shape_surface_card</item>
+        <item name="android:padding">@dimen/spacing_md</item>
+    </style>
+
+    <style name="Widget.Token.TopAppBar" parent="Widget.AppCompat.Toolbar">
+        <item name="android:background">@color/colorSurface</item>
+        <item name="titleTextColor">@color/colorTextPrimary</item>
+        <item name="subtitleTextColor">@color/colorTextSecondary</item>
+    </style>
+
+    <style name="Widget.Toolbar.Dark" parent="Widget.Token.TopAppBar" />
 </resources>
