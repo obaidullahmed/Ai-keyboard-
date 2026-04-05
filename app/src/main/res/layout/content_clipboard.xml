@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="24dp">
+
+    <TextView
+        android:id="@+id/clipboardEmptyText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_secondary"
+        android:textSize="14sp"
+        android:layout_marginBottom="12dp" />
+
+    <ListView
+        android:id="@+id/clipboardList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@color/settingsDivider"
+        android:dividerHeight="1dp"
+        android:paddingBottom="12dp" />
+
+    <Button
+        android:id="@+id/buttonClearClipboard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/clipboard_clear"
+        android:backgroundTint="@color/button_secondary"
+        android:textColor="@color/text_primary" />
+</LinearLayout>

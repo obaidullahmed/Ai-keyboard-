@@ -12,6 +12,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnEnableKeyboard: Button
     private lateinit var btnSelectKeyboard: Button
     private lateinit var btnContinue: Button
+    private lateinit var btnSettings: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,6 +21,7 @@ class MainActivity : AppCompatActivity() {
         btnEnableKeyboard = findViewById(R.id.btn_enable_keyboard)
         btnSelectKeyboard = findViewById(R.id.btn_select_keyboard)
         btnContinue = findViewById(R.id.btn_continue)
+        btnSettings = findViewById(R.id.btn_settings)
 
         btnEnableKeyboard.setOnClickListener {
             // Open keyboard settings

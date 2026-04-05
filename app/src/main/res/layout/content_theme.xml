@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="24dp">
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/radioDark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dark theme"
+            android:textColor="@color/text_primary"
+            android:layout_marginBottom="12dp" />
+
+        <RadioButton
+            android:id="@+id/radioSoft"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Soft mode"
+            android:textColor="@color/text_primary"
+            android:layout_marginBottom="12dp" />
+
+        <RadioButton
+            android:id="@+id/radioNeon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Neon accent"
+            android:textColor="@color/text_primary"
+            android:layout_marginBottom="20dp" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/buttonApplyTheme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save theme"
+        android:backgroundTint="@color/button_primary"
+        android:textColor="@color/text_primary" />
+</LinearLayout>

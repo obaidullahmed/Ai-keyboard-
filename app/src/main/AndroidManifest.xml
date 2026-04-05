@@ -19,6 +19,49 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".settings.SettingsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".settings.LanguagesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".settings.PreferencesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".settings.ThemeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".settings.CorrectionsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".settings.GlideTypingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".settings.VoiceTypingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".settings.ClipboardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".settings.DictionaryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".settings.EmojisActivity"
+            android:exported="false" />
+        <activity
+            android:name=".settings.PrivacyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".settings.RateUsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".settings.AboutActivity"
+            android:exported="false" />
+        <activity
+            android:name=".settings.HelpFeedbackActivity"
+            android:exported="false" />
+
         <service
             android:name=".keyboard.AiKeyboardService"
             android:permission="android.permission.BIND_INPUT_METHOD"

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="24dp">
+
+    <Switch
+        android:id="@+id/switchKeyPopup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/preferences_key_popup"
+        android:textColor="@color/text_primary"
+        android:layout_marginBottom="16dp" />
+
+    <Switch
+        android:id="@+id/switchVibration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/preferences_vibration"
+        android:textColor="@color/text_primary"
+        android:layout_marginBottom="16dp" />
+
+    <Switch
+        android:id="@+id/switchSound"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/preferences_sound"
+        android:textColor="@color/text_primary"
+        android:layout_marginBottom="16dp" />
+
+    <Switch
+        android:id="@+id/switchNumberRow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/preferences_number_row"
+        android:textColor="@color/text_primary"
+        android:layout_marginBottom="16dp" />
+
+    <Switch
+        android:id="@+id/switchAutoCaps"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/preferences_auto_caps"
+        android:textColor="@color/text_primary"
+        android:layout_marginBottom="16dp" />
+</LinearLayout>

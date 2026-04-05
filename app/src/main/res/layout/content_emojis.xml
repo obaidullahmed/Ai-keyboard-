@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="24dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Enable keyboard emoji and sticker features in future updates. These switches will persist visible support options in the keyboard architecture."
+        android:textColor="@color/text_secondary"
+        android:textSize="14sp"
+        android:layout_marginBottom="16dp" />
+
+    <Switch
+        android:id="@+id/switchEmojis"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/emojis_enabled"
+        android:textColor="@color/text_primary"
+        android:layout_marginBottom="16dp" />
+
+    <Switch
+        android:id="@+id/switchStickers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/stickers_enabled"
+        android:textColor="@color/text_primary" />
+</LinearLayout>

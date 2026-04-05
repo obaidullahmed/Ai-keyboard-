@@ -14,4 +14,16 @@
     <color name="text_secondary">#B3B3B3</color>
     <color name="button_primary">#3D8BFF</color>
     <color name="button_secondary">#30404B</color>
+    <color name="settingsBackground">#FF0F1317</color>
+    <color name="settingsCard">#1B242D</color>
+    <color name="settingsDivider">#26313D</color>
+    <color name="settingsItemIcon">#A3C9FF</color>
+    <color name="themeDarkBackground">#FF0F1317</color>
+    <color name="themeSoftBackground">#FF1E2630</color>
+    <color name="themeNeonBackground">#FF112233</color>
+    <color name="keyboardBackground">#FF101214</color>
+    <color name="keyboardKey">#FF1F2A34</color>
+    <color name="keyboardKeyText">#FFFFFFFF</color>
+    <color name="keyboardActionKey">#FF30404B</color>
+    <color name="keyboardAiKey">#FF3D8BFF</color>
 </resources>

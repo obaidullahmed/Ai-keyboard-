@@ -78,6 +78,19 @@ class SuggestionBarManager(
         isErrorState = false
     }
 
+    fun setSuggestionsEnabled(enabled: Boolean) {
+        if (enabled) {
+            chip1.visibility = View.VISIBLE
+            chip2.visibility = View.VISIBLE
+            chip3.visibility = View.VISIBLE
+        } else {
+            loadingIndicator.visibility = View.GONE
+            chip1.visibility = View.GONE
+            chip2.visibility = View.GONE
+            chip3.visibility = View.GONE
+        }
+    }
+
     fun showSecureFieldState() {
         loadingIndicator.visibility = View.GONE
         chip1.text = "Secure input detected"
