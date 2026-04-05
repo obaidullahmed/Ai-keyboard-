@@ -20,7 +20,7 @@
     <string name="preferences_subtitle">Personalize typing behavior</string>
     <string name="theme_title">Theme</string>
     <string name="theme_subtitle">Select your keyboard appearance</string>
-    <string name="corrections_title">Corrections & Suggestions</string>
+    <string name="corrections_title">Corrections &amp; Suggestions</string>
     <string name="corrections_subtitle">Smart suggestions and typing assistance</string>
     <string name="glide_title">Glide Typing</string>
     <string name="glide_subtitle">Prepare swipe typing support</string>
@@ -30,7 +30,7 @@
     <string name="clipboard_subtitle">View and clear recent copied text</string>
     <string name="dictionary_title">Dictionary</string>
     <string name="dictionary_subtitle">Manage your personal word list</string>
-    <string name="media_title">Emojis, Stickers & GIFs</string>
+    <string name="media_title">Emojis, Stickers &amp; GIFs</string>
     <string name="media_subtitle">Enable future expressive typing tools</string>
     <string name="privacy_title">Privacy</string>
     <string name="privacy_subtitle">Your data stays on device</string>
@@ -38,7 +38,7 @@
     <string name="rate_subtitle">Share your feedback on Google Play</string>
     <string name="about_title">About</string>
     <string name="about_subtitle">App details and version info</string>
-    <string name="help_title">Help & Feedback</string>
+    <string name="help_title">Help &amp; Feedback</string>
     <string name="help_subtitle">Ask questions or send feedback</string>
     <string name="share_title">Share App</string>
     <string name="share_subtitle">Recommend the keyboard to friends</string>
