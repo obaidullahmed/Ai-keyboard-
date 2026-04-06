@@ -108,7 +108,7 @@
     <string name="stickers_enabled">Sticker panel</string>
 
     <!-- Privacy -->
-    <string name="privacy_summary">We process typing locally on device. AI requests are only sent when you explicitly use the keyboard&apos;s AI features.</string>
+    <string name="privacy_summary">Your typing data stays on your device unless you explicitly use AI features.</string>
     <string name="privacy_details">No personal typing data is stored or shared without permission. Keyboard entries, clipboard history, and custom words are kept on device only.</string>
     <string name="privacy_description">Privacy-safe keyboard behavior is our priority.</string>
 
