@@ -89,88 +89,67 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:columnCount="10"
-        android:rowCount="5"
         android:paddingTop="8dp">
 
         <!-- Number row -->
+        <Button android:id="@+id/key1" style="@style/KeyboardKeyStyle" android:text="1" />
+        <Button android:id="@+id/key2" style="@style/KeyboardKeyStyle" android:text="2" />
+        <Button android:id="@+id/key3" style="@style/KeyboardKeyStyle" android:text="3" />
+        <Button android:id="@+id/key4" style="@style/KeyboardKeyStyle" android:text="4" />
+        <Button android:id="@+id/key5" style="@style/KeyboardKeyStyle" android:text="5" />
+        <Button android:id="@+id/key6" style="@style/KeyboardKeyStyle" android:text="6" />
+        <Button android:id="@+id/key7" style="@style/KeyboardKeyStyle" android:text="7" />
+        <Button android:id="@+id/key8" style="@style/KeyboardKeyStyle" android:text="8" />
+        <Button android:id="@+id/key9" style="@style/KeyboardKeyStyle" android:text="9" />
+        <Button android:id="@+id/key0" style="@style/KeyboardKeyStyle" android:text="0" />
+
+        <!-- Q row -->
+        <Button android:id="@+id/keyQ" style="@style/KeyboardKeyStyle" android:text="Q" />
+        <Button android:id="@+id/keyW" style="@style/KeyboardKeyStyle" android:text="W" />
+        <Button android:id="@+id/keyE" style="@style/KeyboardKeyStyle" android:text="E" />
+        <Button android:id="@+id/keyR" style="@style/KeyboardKeyStyle" android:text="R" />
+        <Button android:id="@+id/keyT" style="@style/KeyboardKeyStyle" android:text="T" />
+        <Button android:id="@+id/keyY" style="@style/KeyboardKeyStyle" android:text="Y" />
+        <Button android:id="@+id/keyU" style="@style/KeyboardKeyStyle" android:text="U" />
+        <Button android:id="@+id/keyI" style="@style/KeyboardKeyStyle" android:text="I" />
+        <Button android:id="@+id/keyO" style="@style/KeyboardKeyStyle" android:text="O" />
+        <Button android:id="@+id/keyP" style="@style/KeyboardKeyStyle" android:text="P" />
+
+        <!-- A row -->
+        <Button android:id="@+id/keyA" style="@style/KeyboardKeyStyle" android:text="A" />
+        <Button android:id="@+id/keyS" style="@style/KeyboardKeyStyle" android:text="S" />
+        <Button android:id="@+id/keyD" style="@style/KeyboardKeyStyle" android:text="D" />
+        <Button android:id="@+id/keyF" style="@style/KeyboardKeyStyle" android:text="F" />
+        <Button android:id="@+id/keyG" style="@style/KeyboardKeyStyle" android:text="G" />
+        <Button android:id="@+id/keyH" style="@style/KeyboardKeyStyle" android:text="H" />
+        <Button android:id="@+id/keyJ" style="@style/KeyboardKeyStyle" android:text="J" />
+        <Button android:id="@+id/keyK" style="@style/KeyboardKeyStyle" android:text="K" />
+        <Button android:id="@+id/keyL" style="@style/KeyboardKeyStyle" android:text="L" />
         <Button
-            android:id="@+id/key1"
-            style="@style/KeyboardKeyStyle"
-            android:text="1" />
-        <Button
-            android:id="@+id/key2"
-            style="@style/KeyboardKeyStyle"
-            android:text="2" />
-        <Button
-            android:id="@+id/key3"
-            style="@style/KeyboardKeyStyle"
-            android:text="3" />
-        <Button
-            android:id="@+id/key4"
-            style="@style/KeyboardKeyStyle"
-            android:text="4" />
-        <Button
-            android:id="@+id/key5"
-            style="@style/KeyboardKeyStyle"
-            android:text="5" />
-        <Button
-            android:id="@+id/key6"
-            style="@style/KeyboardKeyStyle"
-            android:text="6" />
-        <Button
-            android:id="@+id/key7"
-            style="@style/KeyboardKeyStyle"
-            android:text="7" />
-        <Button
-            android:id="@+id/key8"
-            style="@style/KeyboardKeyStyle"
-            android:text="8" />
-        <Button
-            android:id="@+id/key9"
-            style="@style/KeyboardKeyStyle"
-            android:text="9" />
-        <Button
-            android:id="@+id/key0"
-            style="@style/KeyboardKeyStyle"
-            android:text="0" />
-            android:id="@+id/keyX"
-            style="@style/KeyboardKeyStyle"
-            android:text="X" />
-        <Button
-            android:id="@+id/keyC"
-            style="@style/KeyboardKeyStyle"
-            android:text="C" />
-        <Button
-            android:id="@+id/keyV"
-            style="@style/KeyboardKeyStyle"
-            android:text="V" />
-        <Button
-            android:id="@+id/keyB"
-            style="@style/KeyboardKeyStyle"
-            android:text="B" />
-        <Button
-            android:id="@+id/keyN"
-            style="@style/KeyboardKeyStyle"
-            android:text="N" />
-        <Button
-            android:id="@+id/keyM"
-            style="@style/KeyboardKeyStyle"
-            android:text="M" />
+            android:id="@+id/keyBackspace"
+            style="@style/KeyboardActionKeyStyle"
+            android:text="⌫" />
+
+        <!-- Z row -->
+        <Button android:id="@+id/keyZ" style="@style/KeyboardKeyStyle" android:text="Z" />
+        <Button android:id="@+id/keyX" style="@style/KeyboardKeyStyle" android:text="X" />
+        <Button android:id="@+id/keyC" style="@style/KeyboardKeyStyle" android:text="C" />
+        <Button android:id="@+id/keyV" style="@style/KeyboardKeyStyle" android:text="V" />
+        <Button android:id="@+id/keyB" style="@style/KeyboardKeyStyle" android:text="B" />
+        <Button android:id="@+id/keyN" style="@style/KeyboardKeyStyle" android:text="N" />
+        <Button android:id="@+id/keyM" style="@style/KeyboardKeyStyle" android:text="M" />
         <Button
             android:id="@+id/keySpace"
             style="@style/KeyboardActionKeyStyle"
             android:text="Space"
-            android:layout_columnSpan="3" />
+            android:layout_columnSpan="2" />
         <Button
             android:id="@+id/keyEnter"
             style="@style/KeyboardActionKeyStyle"
             android:text="Enter" />
-
-        <!-- Row 4 -->
         <Button
             android:id="@+id/keyAiAction"
             style="@style/KeyboardAiKeyStyle"
-            android:text="AI" 
-            android:layout_columnSpan="10" />
+            android:text="AI" />
     </GridLayout>
 </LinearLayout>
