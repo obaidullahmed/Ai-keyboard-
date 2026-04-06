@@ -55,6 +55,10 @@
         <item name="android:fontFamily">sans-serif</item>
     </style>
 
+    <style name="Widget.Token" parent="Widget.AppCompat">
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
     <!-- Component tokens -->
     <style name="Widget.Token.KeyboardKey">
         <item name="android:layout_width">0dp</item>
@@ -100,12 +104,12 @@
         <item name="android:minHeight">@dimen/spacing_lg</item>
     </style>
 
-    <style name="Widget.Token.OnboardingCard" parent="Widget.AppCompat.CardView">
+    <style name="Widget.Token.OnboardingCard" parent="Widget.CardView">
         <item name="android:background">@drawable/shape_surface_card</item>
         <item name="android:padding">@dimen/spacing_lg</item>
     </style>
 
-    <style name="Widget.Token.SettingsRow" parent="Widget.AppCompat.CardView">
+    <style name="Widget.Token.SettingsRow" parent="Widget.CardView">
         <item name="android:background">@drawable/shape_surface_card</item>
         <item name="android:padding">@dimen/spacing_md</item>
     </style>
