@@ -1,30 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/settingsBackground">
+    android:background="#0A1020">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:background="@color/themeDarkBackground"
-        android:elevation="4dp"
-        android:titleTextColor="@color/text_primary" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true"
-        android:padding="16dp">
-
-        <LinearLayout
-            android:id="@+id/settingsContainer"
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:divider="@color/settingsDivider"
-            android:showDividers="middle" />
-    </ScrollView>
-</LinearLayout>
+            android:text="Settings"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="18dp" />
+
+        <TextView style="@style/SettingItem" android:text="Languages"/>
+        <TextView style="@style/SettingItem" android:text="Preferences"/>
+        <TextView style="@style/SettingItem" android:text="Theme"/>
+        <TextView style="@style/SettingItem" android:text="Corrections and suggestions"/>
+        <TextView style="@style/SettingItem" android:text="Glide typing"/>
+        <TextView style="@style/SettingItem" android:text="Voice typing"/>
+        <TextView style="@style/SettingItem" android:text="Clipboard"/>
+        <TextView style="@style/SettingItem" android:text="Dictionary"/>
+        <TextView style="@style/SettingItem" android:text="Emojis, stickers and GIFs"/>
+        <TextView style="@style/SettingItem" android:text="Privacy"/>
+        <TextView style="@style/SettingItem" android:text="Rate us"/>
+        <TextView style="@style/SettingItem" android:text="About"/>
+        <TextView style="@style/SettingItem" android:text="Help and feedback"/>
+
+    </LinearLayout>
+</ScrollView>
