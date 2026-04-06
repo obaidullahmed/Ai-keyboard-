@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- ✅ ROOT FIX (VERY IMPORTANT) -->
+    <style name="Widget" />
+
     <!-- Typography tokens -->
     <style name="TextAppearance.DisplayTitle" parent="TextAppearance.AppCompat.Display1">
         <item name="android:textSize">32sp</item>
@@ -55,11 +59,12 @@
         <item name="android:fontFamily">sans-serif</item>
     </style>
 
+    <!-- Base Token -->
     <style name="Widget.Token">
         <item name="android:fontFamily">sans-serif</item>
     </style>
 
-    <!-- Component tokens -->
+    <!-- Keyboard Keys -->
     <style name="Widget.Token.KeyboardKey">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">56dp</item>
@@ -83,6 +88,7 @@
         <item name="android:textAllCaps">true</item>
     </style>
 
+    <!-- Buttons -->
     <style name="Widget.Token.CTAButton" parent="Widget.AppCompat.Button">
         <item name="android:background">@drawable/shape_button_primary</item>
         <item name="android:textColor">@color/colorTextPrimary</item>
@@ -104,6 +110,7 @@
         <item name="android:minHeight">@dimen/spacing_lg</item>
     </style>
 
+    <!-- Cards -->
     <style name="Widget.Token.OnboardingCard">
         <item name="android:background">@drawable/shape_surface_card</item>
         <item name="android:padding">@dimen/spacing_lg</item>
@@ -114,6 +121,7 @@
         <item name="android:padding">@dimen/spacing_md</item>
     </style>
 
+    <!-- Toolbar -->
     <style name="Widget.Token.TopAppBar" parent="Widget.AppCompat.Toolbar">
         <item name="android:background">@color/colorSurface</item>
         <item name="titleTextColor">@color/colorTextPrimary</item>
@@ -121,4 +129,5 @@
     </style>
 
     <style name="Widget.Toolbar.Dark" parent="Widget.Token.TopAppBar" />
+
 </resources>
