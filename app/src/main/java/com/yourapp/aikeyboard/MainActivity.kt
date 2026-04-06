@@ -9,41 +9,33 @@ import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var btnEnableKeyboard: Button
-    private lateinit var btnSelectKeyboard: Button
-    private lateinit var btnContinue: Button
-    private lateinit var btnSettings: Button
+    private fun openKeyboardSettings() {
+        startActivity(Intent(Settings.ACTION_INPUT_METHOD_SETTINGS))
+    }
+
+    private fun showInputMethodPicker() {
+        val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.showInputMethodPicker()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        btnEnableKeyboard = findViewById(R.id.btn_enable_keyboard)
-        btnSelectKeyboard = findViewById(R.id.btn_select_keyboard)
-        btnContinue = findViewById(R.id.btn_continue)
-        btnSettings = findViewById(R.id.btn_settings)
-
-        btnEnableKeyboard.setOnClickListener {
-            // Open keyboard settings
-            val intent = Intent(Settings.ACTION_INPUT_METHOD_SETTINGS)
-            startActivity(intent)
-            // After returning, show next button
-            btnEnableKeyboard.visibility = android.view.View.GONE
-            btnSelectKeyboard.visibility = android.view.View.VISIBLE
+        findViewById<Button>(R.id.btnContinue).setOnClickListener {
+            openKeyboardSettings()
         }
 
-        btnSelectKeyboard.setOnClickListener {
-            // Open input method picker
-            val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.showInputMethodPicker()
-            // After selecting, show continue
-            btnSelectKeyboard.visibility = android.view.View.GONE
-            btnContinue.visibility = android.view.View.VISIBLE
+        findViewById<Button>(R.id.btnOpenSettings).setOnClickListener {
+            startActivity(Intent(this, SettingsActivity::class.java))
         }
 
-        btnContinue.setOnClickListener {
-            // Finish onboarding
-            finish()
+        findViewById<Button>(R.id.btnEnableKeyboard).setOnClickListener {
+            openKeyboardSettings()
+        }
+
+        findViewById<Button>(R.id.btnSelectKeyboard).setOnClickListener {
+            showInputMethodPicker()
         }
     }
 }
