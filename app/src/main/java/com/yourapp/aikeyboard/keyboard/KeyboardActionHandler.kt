@@ -1,6 +1,7 @@
 package com.yourapp.aikeyboard.keyboard
 
 import android.inputmethodservice.InputMethodService
+import android.view.HapticFeedbackConstants
 import android.view.SoundEffectConstants
 import android.view.inputmethod.InputConnection
 import android.widget.Toast
@@ -24,19 +25,15 @@ class KeyboardActionHandler(
             character.lowercase()
         }
 
-        inputConnection?.let {
-            textCommitManager.commitText(commitText)
-            lastCharacter = commitText.lastOrNull()
-            provideFeedback()
-        }
+        textCommitManager.commitText(commitText)
+        lastCharacter = commitText.lastOrNull()
+        provideFeedback()
     }
 
     fun onBackspace() {
-        inputConnection?.let {
-            textCommitManager.deletePreviousCharacter()
-            lastCharacter = null
-            provideFeedback()
-        }
+        textCommitManager.deletePreviousCharacter()
+        lastCharacter = null
+        provideFeedback()
     }
 
     fun onSpace() {
@@ -70,22 +67,28 @@ class KeyboardActionHandler(
 
     private fun shouldAutoCap(): Boolean {
         val previousChar = lastCharacter
-        return previousChar == null || previousChar == ' ' || previousChar == '\n' || previousChar == '.' || previousChar == '!' || previousChar == '?'
+        return previousChar == null ||
+            previousChar == ' ' ||
+            previousChar == '\n' ||
+            previousChar == '.' ||
+            previousChar == '!' ||
+            previousChar == '?'
     }
 
     private fun provideFeedback() {
+        val decorView = service.window?.window?.decorView
+
         if (settingsRepository.isVibrationEnabled()) {
-            service.window?.decorView?.performHapticFeedback(
-                android.view.HapticFeedbackConstants.KEYBOARD_TAP
-            )
+            decorView?.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP)
         }
 
         if (settingsRepository.isSoundEnabled()) {
-            service.window?.decorView?.playSoundEffect(SoundEffectConstants.CLICK)
+            decorView?.playSoundEffect(SoundEffectConstants.CLICK)
         }
 
         if (settingsRepository.isKeyPopupEnabled()) {
-            Toast.makeText(service, "${'$'}{lastCharacter ?: ""}", Toast.LENGTH_SHORT).show()
+            val popupText = lastCharacter?.toString() ?: ""
+            Toast.makeText(service, popupText, Toast.LENGTH_SHORT).show()
         }
     }
 }
