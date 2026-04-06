@@ -1,133 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- ✅ ROOT FIX (VERY IMPORTANT) -->
-    <style name="Widget" />
-
-    <!-- Typography tokens -->
-    <style name="TextAppearance.DisplayTitle" parent="TextAppearance.AppCompat.Display1">
-        <item name="android:textSize">32sp</item>
-        <item name="android:textColor">@color/colorTextPrimary</item>
-        <item name="android:fontFamily">sans-serif-medium</item>
+    <style name="FeatureCard">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">80dp</item>
+        <item name="android:layout_marginBottom">14dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingStart">24dp</item>
+        <item name="android:paddingEnd">24dp</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">19sp</item>
+        <item name="android:background">@drawable/bg_feature_card</item>
     </style>
 
-    <style name="TextAppearance.ScreenTitle" parent="TextAppearance.AppCompat.Title">
-        <item name="android:textSize">24sp</item>
-        <item name="android:textColor">@color/colorTextPrimary</item>
-        <item name="android:fontFamily">sans-serif-medium</item>
-    </style>
-
-    <style name="TextAppearance.SectionTitle" parent="TextAppearance.AppCompat.Subhead">
+    <style name="SettingItem">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">64dp</item>
+        <item name="android:layout_marginBottom">12dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingStart">18dp</item>
+        <item name="android:paddingEnd">18dp</item>
+        <item name="android:textColor">#F4F7FF</item>
         <item name="android:textSize">18sp</item>
-        <item name="android:textColor">@color/colorTextSecondary</item>
-        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:background">@drawable/bg_feature_card</item>
     </style>
-
-    <style name="TextAppearance.Body" parent="TextAppearance.AppCompat.Body1">
-        <item name="android:textSize">15sp</item>
-        <item name="android:textColor">@color/colorTextPrimary</item>
-        <item name="android:fontFamily">sans-serif</item>
-    </style>
-
-    <style name="TextAppearance.BodySmall" parent="TextAppearance.AppCompat.Body2">
-        <item name="android:textSize">13sp</item>
-        <item name="android:textColor">@color/colorTextSecondary</item>
-        <item name="android:fontFamily">sans-serif</item>
-    </style>
-
-    <style name="TextAppearance.Caption" parent="TextAppearance.AppCompat.Caption">
-        <item name="android:textSize">12sp</item>
-        <item name="android:textColor">@color/colorTextMuted</item>
-        <item name="android:fontFamily">sans-serif</item>
-    </style>
-
-    <style name="TextAppearance.ButtonText" parent="TextAppearance.AppCompat.Button">
-        <item name="android:textSize">15sp</item>
-        <item name="android:textColor">@color/colorTextPrimary</item>
-        <item name="android:fontFamily">sans-serif-medium</item>
-    </style>
-
-    <style name="TextAppearance.KeyboardKey" parent="TextAppearance.AppCompat.Body1">
-        <item name="android:textSize">16sp</item>
-        <item name="android:textColor">@color/colorTextPrimary</item>
-        <item name="android:fontFamily">sans-serif-medium</item>
-    </style>
-
-    <style name="TextAppearance.SuggestionText" parent="TextAppearance.AppCompat.Body2">
-        <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/colorTextPrimary</item>
-        <item name="android:fontFamily">sans-serif</item>
-    </style>
-
-    <!-- Base Token -->
-    <style name="Widget.Token">
-        <item name="android:fontFamily">sans-serif</item>
-    </style>
-
-    <!-- Keyboard Keys -->
-    <style name="Widget.Token.KeyboardKey">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">56dp</item>
-        <item name="android:layout_margin">@dimen/spacing_xs</item>
-        <item name="android:layout_rowWeight">1</item>
-        <item name="android:layout_columnWeight">1</item>
-        <item name="android:background">@drawable/shape_keyboard_key</item>
-        <item name="android:textColor">@color/colorTextPrimary</item>
-        <item name="android:textSize">16sp</item>
-        <item name="android:fontFamily">sans-serif-medium</item>
-    </style>
-
-    <style name="KeyboardKeyStyle" parent="Widget.Token.KeyboardKey" />
-
-    <style name="KeyboardActionKeyStyle" parent="Widget.Token.KeyboardKey">
-        <item name="android:background">@drawable/shape_keyboard_action_key</item>
-    </style>
-
-    <style name="KeyboardAiKeyStyle" parent="Widget.Token.KeyboardKey">
-        <item name="android:background">@drawable/shape_keyboard_ai_key</item>
-        <item name="android:textAllCaps">true</item>
-    </style>
-
-    <!-- Buttons -->
-    <style name="Widget.Token.CTAButton" parent="Widget.AppCompat.Button">
-        <item name="android:background">@drawable/shape_button_primary</item>
-        <item name="android:textColor">@color/colorTextPrimary</item>
-        <item name="android:textAppearance">@style/TextAppearance.ButtonText</item>
-        <item name="android:paddingLeft">@dimen/spacing_lg</item>
-        <item name="android:paddingRight">@dimen/spacing_lg</item>
-        <item name="android:paddingTop">@dimen/spacing_sm</item>
-        <item name="android:paddingBottom">@dimen/spacing_sm</item>
-    </style>
-
-    <style name="Widget.Token.AIButton" parent="Widget.Token.CTAButton" />
-
-    <style name="Widget.Token.SuggestionChip" parent="Widget.AppCompat.Button">
-        <item name="android:background">@drawable/shape_suggestion_chip</item>
-        <item name="android:textColor">@color/colorTextPrimary</item>
-        <item name="android:textAppearance">@style/TextAppearance.SuggestionText</item>
-        <item name="android:paddingLeft">@dimen/spacing_sm</item>
-        <item name="android:paddingRight">@dimen/spacing_sm</item>
-        <item name="android:minHeight">@dimen/spacing_lg</item>
-    </style>
-
-    <!-- Cards -->
-    <style name="Widget.Token.OnboardingCard">
-        <item name="android:background">@drawable/shape_surface_card</item>
-        <item name="android:padding">@dimen/spacing_lg</item>
-    </style>
-
-    <style name="Widget.Token.SettingsRow">
-        <item name="android:background">@drawable/shape_surface_card</item>
-        <item name="android:padding">@dimen/spacing_md</item>
-    </style>
-
-    <!-- Toolbar -->
-    <style name="Widget.Token.TopAppBar" parent="Widget.AppCompat.Toolbar">
-        <item name="android:background">@color/colorSurface</item>
-        <item name="titleTextColor">@color/colorTextPrimary</item>
-        <item name="subtitleTextColor">@color/colorTextSecondary</item>
-    </style>
-
-    <style name="Widget.Toolbar.Dark" parent="Widget.Token.TopAppBar" />
 
 </resources>
