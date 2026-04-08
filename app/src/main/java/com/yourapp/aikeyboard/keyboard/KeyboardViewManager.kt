@@ -254,20 +254,3 @@ class KeyboardViewManager(
         }
     }
 }
-            R.id.key1, R.id.key2, R.id.key3, R.id.key4, R.id.key5,
-            R.id.key6, R.id.key7, R.id.key8, R.id.key9, R.id.key0,
-            R.id.keyQ, R.id.keyW, R.id.keyE, R.id.keyR, R.id.keyT,
-            R.id.keyY, R.id.keyU, R.id.keyI, R.id.keyO, R.id.keyP,
-            R.id.keyA, R.id.keyS, R.id.keyD, R.id.keyF, R.id.keyG,
-            R.id.keyH, R.id.keyJ, R.id.keyK, R.id.keyL,
-            R.id.keyZ, R.id.keyX, R.id.keyC, R.id.keyV, R.id.keyB,
-            R.id.keyN, R.id.keyM, R.id.keyBackspace, R.id.keySpace, R.id.keyEnter
-        )
-        keys.forEach { keyId ->
-            rootView.findViewById<Button>(keyId)?.apply {
-                setBackgroundColor(keyColor)
-                setTextColor(textColor)
-            }
-        }
-    }
-}
