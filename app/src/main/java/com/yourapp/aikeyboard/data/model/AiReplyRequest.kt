@@ -1,5 +1,6 @@
 package com.yourapp.aikeyboard.data.model
 
+import com.yourapp.aikeyboard.data.model.AiReplyRequest
 import org.json.JSONObject
 
 data class AiReplyRequest(
