@@ -23,7 +23,6 @@ class KeyboardActionHandler(
     private var lastCharacter: Char? = null
     private var isShiftActive: Boolean = false
     private var currentAiManager: AiReplyManager? = null
-    private var currentSelectedMode: ToneMode? = null
 
     fun setAiManager(aiManager: AiReplyManager) {
         currentAiManager = aiManager
@@ -31,13 +30,19 @@ class KeyboardActionHandler(
 
     fun onCharacterKey(character: String) {
         val commitText = if (settingsRepository.isAutoCapitalizationEnabled() && shouldAutoCap()) {
-            character.uppercase()
+            if (character.length == 1) character.uppercase() else character
         } else {
-            character.lowercase()
+            character
         }
 
         textCommitManager.commitText(commitText)
         lastCharacter = commitText.lastOrNull()
+        if (isShiftActive) {
+            isShiftActive = false
+            if (service is AiKeyboardService) {
+                service.updateShiftState(false)
+            }
+        }
         provideFeedback()
     }
 
@@ -72,12 +77,27 @@ class KeyboardActionHandler(
 
     fun onShiftToggled() {
         isShiftActive = !isShiftActive
+        if (service is AiKeyboardService) {
+            service.updateShiftState(isShiftActive)
+        }
         provideFeedback()
     }
 
     fun onAiButtonClicked() {
         if (service is AiKeyboardService) {
             service.handleAiActionRequest()
+        }
+    }
+
+    fun onSwitchModeClicked() {
+        if (service is AiKeyboardService) {
+            service.toggleKeyboardMode()
+        }
+    }
+
+    fun onEmojiClicked() {
+        if (service is AiKeyboardService) {
+            service.toggleEmojiPanel()
         }
     }
 
@@ -130,10 +150,8 @@ class KeyboardActionHandler(
      * Mode chip selected (for tone selection, etc.)
      */
     fun onModeChipSelected(index: Int) {
-        // Set the current mode based on chip index
-        val modes = listOf(ToneMode.CASUAL, ToneMode.PROFESSIONAL, ToneMode.FRIENDLY)
-        if (index < modes.size) {
-            currentSelectedMode = modes[index]
+        if (service is AiKeyboardService) {
+            service.handleToneChipSelected(index)
         }
     }
 
@@ -155,12 +173,7 @@ class KeyboardActionHandler(
 
     private fun shouldAutoCap(): Boolean {
         val previousChar = lastCharacter
-        return previousChar == null ||
-            previousChar == ' ' ||
-            previousChar == '\n' ||
-            previousChar == '.' ||
-            previousChar == '!' ||
-            previousChar == '?'
+        return previousChar == null || previousChar == ' ' || previousChar == '\n' || previousChar == '.' || previousChar == '!' || previousChar == '?'
     }
 
     private fun provideFeedback() {

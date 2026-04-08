@@ -6,6 +6,31 @@
     <!-- Onboarding / Main -->
     <string name="headline">AI-Powered Keyboard</string>
     <string name="subtitle">Enhance your typing with intelligent AI features</string>
+    <string name="onboarding_brand_title">CleverType AI Keyboard</string>
+    <string name="onboarding_finish_title">Ready to unlock smarter typing</string>
+    <string name="next">Next</string>
+    <string name="get_started">Get Started</string>
+    <string name="skip">Skip</string>
+    <string name="dashboard_title">CleverType Dashboard</string>
+    <string name="dashboard_subtitle">Enable your keyboard, choose it, and open premium settings.</string>
+    <string name="enable_keyboard">Enable Keyboard</string>
+    <string name="select_keyboard">Select Keyboard</string>
+    <string name="app_settings">Settings</string>
+    <string name="onboarding_brand_description">A premium AI keyboard designed for luxury typing with smart assistants built in.</string>
+    <string name="onboarding_personalization_title">Personalize your typing</string>
+    <string name="onboarding_personalization_description">Themes, haptics and language settings for a refined keyboard experience.</string>
+    <string name="onboarding_ai_assistant_title">Custom AI assistant</string>
+    <string name="onboarding_ai_assistant_description">Rewrite, tone, grammar and translate without switching apps.</string>
+    <string name="onboarding_apps_title">Works across apps</string>
+    <string name="onboarding_apps_description">Chat, email, docs and social — all supported by CleverType.</string>
+    <string name="onboarding_translate_title">Instant translation</string>
+    <string name="onboarding_translate_description">Translate text seamlessly from your keyboard in real time.</string>
+    <string name="onboarding_chat_title">ChatGPT on keyboard</string>
+    <string name="onboarding_chat_description">Smart replies appear directly inside the keyboard for faster messaging.</string>
+    <string name="onboarding_tone_title">Tone rewrite</string>
+    <string name="onboarding_tone_description">Switch tone from casual to professional with a single tap.</string>
+    <string name="onboarding_grammar_title">Grammar fix</string>
+    <string name="onboarding_grammar_description">Correct spelling and punctuation with premium accuracy.</string>
 
     <!-- Features -->
     <string name="ai_reply">AI Reply</string>

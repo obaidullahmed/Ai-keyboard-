@@ -10,6 +10,7 @@ class SettingsRepository(context: Context) {
     companion object {
         private const val PREFS_NAME = "ai_keyboard_prefs"
         private const val KEY_LANGUAGES = "key_languages"
+        private const val KEY_CURRENT_LANGUAGE = "key_current_language"
         private const val KEY_KEYPOPUP = "key_popup_enabled"
         private const val KEY_VIBRATION = "vibration_enabled"
         private const val KEY_SOUND = "sound_enabled"
@@ -26,14 +27,28 @@ class SettingsRepository(context: Context) {
         private const val KEY_THEME = "keyboard_theme"
         private const val KEY_DICTIONARY = "personal_dictionary"
         private const val KEY_CLIPBOARD_HISTORY = "clipboard_history"
+        private const val DEFAULT_LANGUAGE = "English"
     }
 
     fun getEnabledLanguages(): Set<String> {
-        return prefs.getStringSet(KEY_LANGUAGES, setOf("English")) ?: setOf("English")
+        val stored = prefs.getStringSet(KEY_LANGUAGES, setOf(DEFAULT_LANGUAGE)) ?: setOf(DEFAULT_LANGUAGE)
+        return if (stored.isEmpty()) setOf(DEFAULT_LANGUAGE) else stored
     }
 
     fun setEnabledLanguages(languages: Set<String>) {
-        prefs.edit().putStringSet(KEY_LANGUAGES, languages).apply()
+        val safeSet = if (languages.isEmpty()) setOf(DEFAULT_LANGUAGE) else languages
+        prefs.edit().putStringSet(KEY_LANGUAGES, safeSet).apply()
+        if (getCurrentLanguage() !in safeSet) {
+            setCurrentLanguage(safeSet.first())
+        }
+    }
+
+    fun getCurrentLanguage(): String {
+        return prefs.getString(KEY_CURRENT_LANGUAGE, DEFAULT_LANGUAGE) ?: DEFAULT_LANGUAGE
+    }
+
+    fun setCurrentLanguage(language: String) {
+        prefs.edit().putString(KEY_CURRENT_LANGUAGE, language).apply()
     }
 
     fun isKeyPopupEnabled(): Boolean = prefs.getBoolean(KEY_KEYPOPUP, true)

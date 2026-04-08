@@ -2,8 +2,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_home_gradient"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:background="@drawable/bg_home_gradient">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,146 +12,106 @@
         android:padding="24dp">
 
         <TextView
-            android:id="@+id/tvHeadline"
-            android:layout_width="wrap_content"
+            android:id="@+id/headlineText"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="AI-Powered Keyboard"
-            android:textColor="#FFFFFF"
-            android:textStyle="bold"
+            android:text="@string/onboarding_brand_title"
+            android:textColor="@color/colorTextPrimary"
             android:textSize="34sp"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center" />
+            android:textStyle="bold"
+            android:lineSpacingExtra="4dp"
+            android:layout_marginBottom="10dp" />
 
         <TextView
-            android:id="@+id/tvSubtitle"
+            android:id="@+id/subtitleText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/onboarding_brand_description"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="16sp"
+            android:layout_marginBottom="24dp" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="320dp"
+            android:clipToPadding="false"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp" />
+
+        <LinearLayout
+            android:id="@+id/dotsContainer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Enhance your typing with intelligent AI features"
-            android:textColor="#C8D4F8"
-            android:textSize="17sp"
+            android:orientation="horizontal"
             android:layout_gravity="center_horizontal"
-            android:gravity="center" />
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="24dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:layout_marginTop="24dp"
-            android:background="@drawable/bg_preview_card"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="16dp">
 
-            <LinearLayout
-                android:layout_width="250dp"
-                android:layout_height="110dp"
-                android:orientation="vertical"
-                android:background="@drawable/bg_keyboard_mock"
-                android:padding="10dp">
+            <Button
+                android:id="@+id/btnSkip"
+                style="@style/SecondaryActionButton"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="@string/skip" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/bg_mock_key"/>
-                    <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/bg_mock_key"/>
-                    <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/bg_mock_key"/>
-                    <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/bg_mock_key"/>
-                    <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/bg_mock_key"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/bg_mock_key"/>
-                    <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/bg_mock_key"/>
-                    <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/bg_mock_key"/>
-                    <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/bg_mock_key"/>
-                    <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_margin="4dp" android:background="@drawable/bg_mock_key"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="2" android:layout_margin="4dp" android:background="@drawable/bg_mock_key"/>
-                    <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="2" android:layout_margin="4dp" android:background="@drawable/bg_mock_key"/>
-                    <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="2" android:layout_margin="4dp" android:background="@drawable/bg_mock_key"/>
-                </LinearLayout>
-            </LinearLayout>
+            <Button
+                android:id="@+id/btnNext"
+                style="@style/PrimaryActionButton"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_marginStart="16dp"
+                android:text="@string/next" />
         </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
-            android:text="Features"
-            android:textColor="#FFFFFF"
-            android:textSize="28sp"
-            android:textStyle="bold" />
-
         <LinearLayout
+            android:id="@+id/footerActions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="14dp">
+            android:visibility="gone"
+            android:layout_marginBottom="16dp">
 
-            <TextView style="@style/FeatureCard" android:text="AI Reply"/>
-            <TextView style="@style/FeatureCard" android:text="Tone Changer"/>
-            <TextView style="@style/FeatureCard" android:text="Translate"/>
-            <TextView style="@style/FeatureCard" android:text="Grammar Check"/>
-            <TextView style="@style/FeatureCard" android:text="Summarize"/>
-            <TextView style="@style/FeatureCard" android:text="Continue Writing"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/dashboard_subtitle"
+                android:textColor="@color/colorTextSecondary"
+                android:textSize="14sp"
+                android:layout_marginBottom="16dp" />
+
+            <Button
+                android:id="@+id/btnEnableKeyboard"
+                style="@style/PrimaryActionButton"
+                android:text="@string/enable_keyboard"
+                android:layout_marginBottom="12dp" />
+
+            <Button
+                android:id="@+id/btnSelectKeyboard"
+                style="@style/SecondaryActionButton"
+                android:text="@string/select_keyboard"
+                android:layout_marginBottom="12dp" />
+
+            <Button
+                android:id="@+id/btnOpenSettings"
+                style="@style/SecondaryActionButton"
+                android:text="@string/app_settings" />
         </LinearLayout>
 
         <Button
             android:id="@+id/btnContinue"
+            style="@style/PrimaryActionButton"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginTop="28dp"
-            android:text="CONTINUE"
-            android:textAllCaps="false"
-            android:textColor="#F5F8FF"
-            android:textSize="18sp"
-            android:background="@drawable/shape_keyboard_key" />
-
-        <Button
-            android:id="@+id/btnOpenSettings"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginTop="18dp"
-            android:text="OPEN SETTINGS"
-            android:textAllCaps="false"
-            android:textColor="#F5F8FF"
-            android:textSize="18sp"
-            android:background="@drawable/shape_keyboard_key" />
-
-        <Button
-            android:id="@+id/btnEnableKeyboard"
-            android:layout_width="match_parent"
-            android:layout_height="54dp"
-            android:layout_marginTop="18dp"
-            android:text="Enable Keyboard"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:background="@drawable/shape_keyboard_key" />
-
-        <Button
-            android:id="@+id/btnSelectKeyboard"
-            android:layout_width="match_parent"
-            android:layout_height="54dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="24dp"
-            android:text="Select Keyboard"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:background="@drawable/shape_keyboard_key" />
-
+            android:text="@string/get_started"
+            android:visibility="gone" />
     </LinearLayout>
 </ScrollView>
