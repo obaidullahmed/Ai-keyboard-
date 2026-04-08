@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">AI Reply Keyboard</string>
+    <string name="app_name">Lexora AI Keyboard</string>
 
     <!-- Onboarding / Main -->
     <string name="headline">AI-Powered Keyboard</string>

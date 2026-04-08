@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- ============================================ -->
+    <!-- FEATURE & SETTING CARDS -->
+    <!-- ============================================ -->
+
     <style name="FeatureCard">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">80dp</item>
@@ -23,6 +27,58 @@
         <item name="android:textColor">#F4F7FF</item>
         <item name="android:textSize">18sp</item>
         <item name="android:background">@drawable/bg_feature_card</item>
+    </style>
+
+    <!-- ============================================ -->
+    <!-- KEYBOARD KEY STYLES -->
+    <!-- ============================================ -->
+
+    <style name="KeyboardKeyStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_margin">2dp</item>
+        <item name="android:background">@drawable/shape_keyboard_key</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:paddingStart">4dp</item>
+        <item name="android:paddingEnd">4dp</item>
+    </style>
+
+    <style name="KeyboardActionKeyStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1.2</item>
+        <item name="android:layout_margin">2dp</item>
+        <item name="android:background">@drawable/shape_keyboard_action_key</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:paddingStart">4dp</item>
+        <item name="android:paddingEnd">4dp</item>
+    </style>
+
+    <style name="KeyboardAiKeyStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1.2</item>
+        <item name="android:layout_margin">2dp</item>
+        <item name="android:background">@drawable/shape_keyboard_ai_key</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:paddingStart">4dp</item>
+        <item name="android:paddingEnd">4dp</item>
     </style>
 
 </resources>
