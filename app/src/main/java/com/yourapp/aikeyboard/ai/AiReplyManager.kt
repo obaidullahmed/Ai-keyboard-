@@ -2,6 +2,7 @@ package com.yourapp.aikeyboard.ai
 
 import android.os.Handler
 import android.os.Looper
+import com.yourapp.aikeyboard.data.model.AiReplyRequest // <-- সঠিক ইমপোর্ট যোগ করা হয়েছে
 import com.yourapp.aikeyboard.data.model.AiRequest
 import com.yourapp.aikeyboard.data.model.AiResponse
 import java.util.concurrent.Executors
@@ -346,21 +347,3 @@ class AiReplyManager(
         }
     }
 }
-
-/**
- * Legacy class kept for backward compatibility
- */
-data class AiReplyRequest(
-    val prompt: String,
-    val mode: String
-) {
-    fun toJson(): String {
-        return """
-            {
-                "prompt": "${prompt.replace("\"", "\\\"")}",
-                "mode": "$mode"
-            }
-        """.trimIndent()
-    }
-}
-
