@@ -140,6 +140,30 @@ class AiKeyboardService : InputMethodService() {
         suggestionBarManager.showIdleState()
     }
 
+    internal fun handleLanguageSwitchRequest() {
+        switchLanguage()
+    }
+
+    internal fun handleGrammarToolClicked() {
+        handleGrammarRequest()
+    }
+
+    internal fun handleToneToolClicked() {
+        handleToneRequest()
+    }
+
+    internal fun handleRewriteToolClicked() {
+        handleRewriteRequest()
+    }
+
+    internal fun handleContinueToolClicked() {
+        handleContinueRequest()
+    }
+
+    internal fun handleTranslateToolClicked() {
+        handleTranslateRequest()
+    }
+
     internal fun handleGrammarRequest() {
         val info = currentInputEditorInfo
         val connection = currentInputConnection
