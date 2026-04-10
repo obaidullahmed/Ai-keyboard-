@@ -33,15 +33,6 @@ data class AiRequest(
 }
 
 /**
- * AI API response
- */
-data class AiResponse(
-    val success: Boolean,
-    val suggestions: List<String> = emptyList(),
-    val error: String? = null
-)
-
-/**
  * Represents a single result from AI processing
  */
 data class AiResult(

@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
+import com.yourapp.aikeyboard.settings.SettingsActivity
 
 class MainActivity : AppCompatActivity() {
 
