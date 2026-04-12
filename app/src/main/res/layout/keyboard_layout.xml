@@ -461,7 +461,7 @@
                     android:id="@+id/keySwitchMode"
                     style="@style/KeyboardActionKeyStyle"
                     android:layout_marginEnd="4dp"
-                    android:text="?123" />
+                    android:text="123" />
 
                 <Button
                     android:id="@+id/keyEmoji"
@@ -514,7 +514,7 @@
                 android:layout_height="40dp"
                 android:background="@drawable/shape_keyboard_key"
                 android:hint="@string/emoji_search_hint"
-                android:hintTextColor="@color/colorTextSecondary"
+                android:textColorHint="@color/colorTextSecondary"
                 android:textColor="@color/colorTextPrimary"
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp"
