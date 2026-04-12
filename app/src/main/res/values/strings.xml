@@ -120,6 +120,10 @@
     <!-- Clipboard -->
     <string name="clipboard_clear">Clear clipboard history</string>
     <string name="clipboard_empty">Clipboard history is empty.</string>
+    <string name="clipboard_history_title">Clipboard history</string>
+    <string name="clipboard_history_empty">No clipboard items</string>
+    <string name="emoji_search_hint">Search emoji</string>
+    <string name="one_handed_mode">One-handed mode</string>
 
     <!-- Dictionary -->
     <string name="dictionary_add">Add custom word</string>

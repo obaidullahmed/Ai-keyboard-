@@ -24,6 +24,8 @@ class SettingsActivity : AppCompatActivity() {
         val btnBangla = findViewById<Button>(R.id.btnBangla)
         val switchSound = findViewById<SwitchCompat>(R.id.switchSound)
         val switchVibration = findViewById<SwitchCompat>(R.id.switchVibration)
+        val switchVoiceTyping = findViewById<SwitchCompat>(R.id.switchVoiceTyping)
+        val switchOneHandedMode = findViewById<SwitchCompat>(R.id.switchOneHandedMode)
         val btnThemeDark = findViewById<Button>(R.id.btnThemeDark)
         val btnThemeSoft = findViewById<Button>(R.id.btnThemeSoft)
         val btnThemeNeon = findViewById<Button>(R.id.btnThemeNeon)
@@ -39,6 +41,8 @@ class SettingsActivity : AppCompatActivity() {
 
         switchSound.isChecked = settingsRepository.isSoundEnabled()
         switchVibration.isChecked = settingsRepository.isVibrationEnabled()
+        switchVoiceTyping.isChecked = settingsRepository.isVoiceTypingEnabled()
+        switchOneHandedMode.isChecked = settingsRepository.isOneHandedModeEnabled()
 
         btnEnglish.setOnClickListener {
             val enabled = settingsRepository.getEnabledLanguages().toMutableSet()
@@ -76,6 +80,14 @@ class SettingsActivity : AppCompatActivity() {
 
         switchVibration.setOnCheckedChangeListener { _, isChecked ->
             settingsRepository.setVibrationEnabled(isChecked)
+        }
+
+        switchVoiceTyping.setOnCheckedChangeListener { _, isChecked ->
+            settingsRepository.setVoiceTypingEnabled(isChecked)
+        }
+
+        switchOneHandedMode.setOnCheckedChangeListener { _, isChecked ->
+            settingsRepository.setOneHandedModeEnabled(isChecked)
         }
 
         btnThemeDark.setOnClickListener { applyThemeSelection(KeyboardTheme.DARK) }

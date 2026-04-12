@@ -1,6 +1,10 @@
 package com.yourapp.aikeyboard.keyboard
 
+import android.app.Activity
+import android.content.ActivityNotFoundException
+import android.content.Intent
 import android.inputmethodservice.InputMethodService
+import android.speech.RecognizerIntent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.inputmethod.EditorInfo
@@ -64,10 +68,15 @@ class AiKeyboardService : InputMethodService() {
         keyboardStateManager.updateGlideTyping(settingsRepository.isGlideTypingEnabled())
         keyboardStateManager.updateEnabledLanguages(settingsRepository.getEnabledLanguages())
 
+        keyboardViewManager.applyPreferences()
+        keyboardViewManager.setKeyboardLanguage(settingsRepository.getCurrentLanguage())
+        keyboardViewManager.refreshClipboardHistory()
+
         applySecureInputState(contextData.isSecureField)
         keyboardViewManager.updateContextPreview(contextData.beforeCursorText.take(50))
         keyboardViewManager.showAiToolsPanel(false)
         keyboardViewManager.showEmojiPanel(false)
+        keyboardViewManager.showClipboardPanel(false)
         suggestionBarManager.showIdleState()
     }
 
@@ -316,7 +325,8 @@ class AiKeyboardService : InputMethodService() {
         keyboardViewManager.hideModeChips()
         keyboardViewManager.showResultsPanel(loading = true)
 
-        aiReplyManager.requestTranslate(textToProcess, "Bangla") { result ->
+        val targetLanguage = if (settingsRepository.getCurrentLanguage().equals("Bangla", ignoreCase = true)) "English" else "Bangla"
+        aiReplyManager.requestTranslate(textToProcess, targetLanguage) { result ->
             when (result) {
                 is AiReplyManager.AiReplyResult.Loading -> keyboardViewManager.showResultsPanel(loading = true)
                 is AiReplyManager.AiReplyResult.Success -> keyboardViewManager.displayResults(result.suggestions)
@@ -325,6 +335,47 @@ class AiKeyboardService : InputMethodService() {
                     suggestionBarManager.showErrorState(result.errorMessage)
                 }
             }
+        }
+    }
+
+    internal fun handleVoiceTypingRequest() {
+        val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
+            putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
+            putExtra(RecognizerIntent.EXTRA_PROMPT, getString(R.string.voice_test_button))
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        }
+
+        try {
+            startActivity(intent)
+            suggestionBarManager.showIdleState()
+        } catch (exception: ActivityNotFoundException) {
+            suggestionBarManager.showErrorState(getString(R.string.voice_not_available))
+        }
+    }
+
+    internal fun handleTypingUpdate() {
+        val info = currentInputEditorInfo
+        val connection = currentInputConnection
+        val contextData = inputContextReader.readCurrentContext(info, connection)
+        lastContext = contextData
+
+        if (contextData.isSecureField) {
+            suggestionBarManager.showSecureFieldState()
+            return
+        }
+
+        val typedText = contextData.beforeCursorText
+        val query = typedText.trimEnd().split(" ").lastOrNull().orEmpty()
+        val suggestions = if (query.isNotBlank()) {
+            TypingAssistant.generateWordSuggestions(query, settingsRepository.getCurrentLanguage())
+        } else {
+            TypingAssistant.generateNextWordSuggestions(typedText, settingsRepository.getCurrentLanguage())
+        }
+
+        if (suggestions.isEmpty()) {
+            suggestionBarManager.showIdleState()
+        } else {
+            suggestionBarManager.updateSuggestions(suggestions)
         }
     }
 

@@ -34,16 +34,59 @@ class TextCommitManager(
     fun replaceOrInsertText(newText: String, selectedStart: Int, selectedEnd: Int) {
         val connection = inputConnection ?: return
 
-        // If text is selected (selectedStart != selectedEnd), replace the selection
         if (selectedStart != selectedEnd) {
             val lengthToDelete = selectedEnd - selectedStart
             connection.setSelection(selectedStart, selectedEnd)
             connection.deleteSurroundingText(0, lengthToDelete)
             connection.commitText(newText, 1)
         } else {
-            // No selection: insert text at cursor with smart spacing
             connection.commitText(newText, 1)
         }
+    }
+
+    fun deletePreviousWord() {
+        val connection = inputConnection ?: return
+        val beforeText = connection.getTextBeforeCursor(200, 0)?.toString().orEmpty()
+        val trimmed = beforeText.trimEnd()
+        if (trimmed.isEmpty()) {
+            connection.deleteSurroundingText(1, 0)
+            return
+        }
+
+        val boundaryIndex = trimmed.lastIndexOfAny(charArrayOf(' ', '\n', '\t', '.', ',', '!', '?', ';', ':'))
+        val count = if (boundaryIndex >= 0) trimmed.length - boundaryIndex - 1 else trimmed.length
+        connection.deleteSurroundingText(count, 0)
+    }
+
+    fun replacePreviousWord(fragment: String, replacement: String) {
+        val connection = inputConnection ?: return
+        val beforeText = connection.getTextBeforeCursor(200, 0)?.toString().orEmpty()
+        val trimmed = beforeText.trimEnd()
+        if (trimmed.isEmpty() || fragment.isBlank()) {
+            connection.commitText(replacement, 1)
+            return
+        }
+
+        val lastIndex = trimmed.lastIndexOf(fragment)
+        if (lastIndex >= 0 && lastIndex + fragment.length == trimmed.length) {
+            val charsToDelete = fragment.length
+            connection.deleteSurroundingText(charsToDelete, 0)
+            connection.commitText(replacement, 1)
+        } else {
+            connection.commitText(replacement, 1)
+        }
+    }
+
+    fun moveCursorBy(offset: Int) {
+        val connection = inputConnection ?: return
+        val beforeTextLength = connection.getTextBeforeCursor(1000, 0)?.length ?: 0
+        val afterTextLength = connection.getTextAfterCursor(1000, 0)?.length ?: 0
+        val newCursorPosition = (beforeTextLength + offset).coerceIn(0, beforeTextLength + afterTextLength)
+        connection.setSelection(newCursorPosition, newCursorPosition)
+    }
+
+    fun getTextAfterCursor(maxChars: Int = 500): String {
+        return inputConnection?.getTextAfterCursor(maxChars, 0)?.toString() ?: ""
     }
 
     /**

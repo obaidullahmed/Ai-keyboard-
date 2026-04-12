@@ -1,7 +1,14 @@
 package com.yourapp.aikeyboard.keyboard
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
+import android.text.Editable
+import android.text.TextWatcher
+import android.view.MotionEvent
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import android.widget.HorizontalScrollView
 import android.widget.LinearLayout
 import android.widget.ProgressBar
@@ -26,6 +33,8 @@ class KeyboardViewManager(
     private val contextPreviewText: TextView? = rootView.findViewById(R.id.contextPreviewText)
     private val languageIndicator: TextView? = rootView.findViewById(R.id.languageIndicator)
     private val previewActionButton: Button? = rootView.findViewById(R.id.previewActionButton)
+    private val clipboardButton: Button? = rootView.findViewById(R.id.keyClipboard)
+    private val voiceButton: Button? = rootView.findViewById(R.id.keyVoice)
 
     private val aiToolsPanel: LinearLayout? = rootView.findViewById(R.id.aiToolsPanel)
     private val toolGrammar: Button? = rootView.findViewById(R.id.toolGrammar)
@@ -46,12 +55,54 @@ class KeyboardViewManager(
     private val resultCard3: Button? = rootView.findViewById(R.id.resultCard3)
 
     private val emojiPanel: LinearLayout? = rootView.findViewById(R.id.emojiPanel)
+    private val emojiSearchInput: EditText? = rootView.findViewById(R.id.emojiSearchInput)
     private val panelCloseKeyboard: Button? = rootView.findViewById(R.id.panelCloseKeyboard)
 
+    private val clipboardPanel: LinearLayout? = rootView.findViewById(R.id.clipboardPanel)
+    private val clipboardHistoryContainer: LinearLayout? = rootView.findViewById(R.id.clipboardHistoryContainer)
+    private val clipboardClearButton: Button? = rootView.findViewById(R.id.clipboardClearButton)
+
     private val numberRow: LinearLayout? = rootView.findViewById(R.id.numberRow)
+    private val keyboardKeysContainer: LinearLayout? = rootView.findViewById(R.id.keyboardKeysContainer)
 
     private var isShiftActive: Boolean = false
+    private var isSymbolMode: Boolean = false
     private var currentLanguage: String = "English"
+
+    private val emojiList = listOf(
+        "😀", "😁", "😂", "🤣", "😊", "😍", "😘", "😎", "🤩", "🤔",
+        "🙌", "👏", "👍", "👎", "🙏", "🔥", "✨", "🎉", "💬", "❤️",
+        "🥳", "😢", "😮", "🤗", "😇", "😴", "😜", "😡", "💡", "🎯"
+    )
+
+    private val emojiKeywords = mapOf(
+        "😀" to listOf("smile", "happy"),
+        "😂" to listOf("laugh", "funny"),
+        "😍" to listOf("love", "heart"),
+        "👍" to listOf("like", "good"),
+        "🙏" to listOf("thanks", "please"),
+        "🔥" to listOf("hot", "fire", "great"),
+        "🎉" to listOf("party", "celebrate"),
+        "💬" to listOf("chat", "message")
+    )
+
+    private val symbolModeMapping = mapOf(
+        R.id.keyQ to "!", R.id.keyW to "@", R.id.keyE to "#", R.id.keyR to "$", R.id.keyT to "%",
+        R.id.keyY to "^", R.id.keyU to "&", R.id.keyI to "*", R.id.keyO to "(", R.id.keyP to ")",
+        R.id.keyA to "-", R.id.keyS to "=", R.id.keyD to "_", R.id.keyF to "+", R.id.keyG to "{",
+        R.id.keyH to "}", R.id.keyJ to "[", R.id.keyK to "]", R.id.keyL to ":",
+        R.id.keyZ to ";", R.id.keyX to '"'.toString(), R.id.keyC to "'", R.id.keyV to "<", R.id.keyB to ">",
+        R.id.keyN to "/", R.id.keyM to "?"
+    )
+
+    private val longPressCharacters = mapOf(
+        R.id.keyQ to "1", R.id.keyW to "2", R.id.keyE to "3", R.id.keyR to "4", R.id.keyT to "5",
+        R.id.keyY to "6", R.id.keyU to "7", R.id.keyI to "8", R.id.keyO to "9", R.id.keyP to "0",
+        R.id.keyA to "@", R.id.keyS to "#", R.id.keyD to "$", R.id.keyF to "%", R.id.keyG to "&",
+        R.id.keyH to "*", R.id.keyJ to "(", R.id.keyK to ")", R.id.keyL to "-", R.id.keyZ to "+",
+        R.id.keyX to "=", R.id.keyC to "_", R.id.keyV to ";", R.id.keyB to ":", R.id.keyN to "'",
+        R.id.keyM to "\""
+    )
 
     fun initializeKeyboard() {
         bindCharacterKeys()
@@ -60,6 +111,8 @@ class KeyboardViewManager(
         bindModeChips()
         bindResultCards()
         bindEmojiButtons()
+        bindEmojiSearch()
+        bindClipboardControls()
         bindPanelCloseButton()
         applyPreferences()
         applyTheme(settingsRepository.getKeyboardTheme())
@@ -70,6 +123,10 @@ class KeyboardViewManager(
         val aiButton = rootView.findViewById<Button>(R.id.keyAiAction)
         aiButton?.isEnabled = enabled
         aiButton?.alpha = if (enabled) 1.0f else 0.5f
+    }
+
+    fun setVoiceTypingEnabled(enabled: Boolean) {
+        voiceButton?.visibility = if (enabled) View.VISIBLE else View.GONE
     }
 
     fun updateContextPreview(text: String) {
@@ -131,12 +188,22 @@ class KeyboardViewManager(
         showEmojiPanel(visible)
         if (visible) {
             resultsCardsPanel?.visibility = View.GONE
+            showClipboardPanel(false)
         }
     }
 
-    fun cycleKeyboardMode() {
-        val isVisible = numberRow?.visibility == View.VISIBLE
-        numberRow?.visibility = if (isVisible) View.GONE else View.VISIBLE
+    fun showClipboardPanel(show: Boolean) {
+        clipboardPanel?.visibility = if (show) View.VISIBLE else View.GONE
+        if (show) {
+            showEmojiPanel(false)
+            refreshClipboardHistory()
+        }
+    }
+
+    fun toggleKeyboardMode() {
+        isSymbolMode = !isSymbolMode
+        applyLanguageLabels(currentLanguage)
+        rootView.findViewById<Button>(R.id.keySwitchMode)?.text = if (isSymbolMode) "ABC" else "?123"
     }
 
     fun updateShiftState(active: Boolean) {
@@ -148,6 +215,49 @@ class KeyboardViewManager(
         currentLanguage = language
         languageIndicator?.text = if (language.equals("Bangla", ignoreCase = true)) "BN" else "EN"
         applyLanguageLabels(language)
+        setVoiceTypingEnabled(settingsRepository.isVoiceTypingEnabled())
+    }
+
+    fun refreshClipboardHistory() {
+        val clipboardManager = rootView.context.getSystemService(Context.CLIPBOARD_SERVICE) as? ClipboardManager
+        val systemText = clipboardManager?.primaryClip?.getItemAt(0)?.coerceToText(rootView.context)?.toString()?.trim().orEmpty()
+        if (systemText.isNotBlank()) {
+            settingsRepository.addClipboardEntry(systemText)
+        }
+
+        clipboardHistoryContainer?.removeAllViews()
+        val history = settingsRepository.getClipboardHistory().take(4)
+
+        if (history.isEmpty()) {
+            val emptyView = TextView(rootView.context).apply {
+                text = rootView.context.getString(R.string.clipboard_history_empty)
+                setTextColor(ContextCompat.getColor(rootView.context, R.color.colorTextSecondary))
+                textSize = 12f
+                setPadding(8, 8, 8, 8)
+            }
+            clipboardHistoryContainer?.addView(emptyView)
+            return
+        }
+
+        history.forEach { item ->
+            val historyButton = Button(rootView.context).apply {
+                layoutParams = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+                ).apply {
+                    setMargins(0, 4, 0, 4)
+                }
+                text = item.take(36)
+                setBackgroundResource(R.drawable.shape_surface_card)
+                setTextColor(ContextCompat.getColor(rootView.context, R.color.colorTextPrimary))
+                textSize = 12f
+                setOnClickListener {
+                    actionHandler.onPasteClipboardText(item)
+                    showClipboardPanel(false)
+                }
+            }
+            clipboardHistoryContainer?.addView(historyButton)
+        }
     }
 
     fun updateShiftLabels() {
@@ -187,7 +297,7 @@ class KeyboardViewManager(
             R.id.keyN to "র", R.id.keyM to "ল"
         )
 
-        val mapping = if (language.equals("Bangla", ignoreCase = true)) banglaMapping else englishMapping
+        val mapping = if (isSymbolMode) symbolModeMapping else if (language.equals("Bangla", ignoreCase = true)) banglaMapping else englishMapping
         mapping.forEach { (keyId, label) ->
             rootView.findViewById<Button>(keyId)?.text = if (isShiftActive) label.uppercase() else label
         }
@@ -206,11 +316,14 @@ class KeyboardViewManager(
         )
 
         keyIds.forEach { keyId ->
-            rootView.findViewById<Button>(keyId)?.setOnClickListener {
-                val value = (it as? Button)?.text?.toString()?.let { label ->
-                    if (label.length == 1 || label.length == 2) label else label.lowercase()
-                } ?: return@setOnClickListener
-                actionHandler.onCharacterKey(value)
+            rootView.findViewById<Button>(keyId)?.apply {
+                setOnClickListener {
+                    val value = text?.toString().orEmpty()
+                    actionHandler.onCharacterKey(value)
+                }
+                setOnLongClickListener {
+                    longPressCharacters[keyId]?.let { actionHandler.onCharacterKey(it); true } ?: false
+                }
             }
         }
     }
@@ -220,8 +333,35 @@ class KeyboardViewManager(
             actionHandler.onBackspace()
         }
 
+        rootView.findViewById<Button>(R.id.keyBackspace)?.setOnLongClickListener {
+            actionHandler.onBackspaceWord()
+            true
+        }
+
+        var spaceTouchStartX = 0f
+
         rootView.findViewById<Button>(R.id.keySpace)?.setOnClickListener {
             actionHandler.onSpace()
+        }
+
+        rootView.findViewById<Button>(R.id.keySpace)?.setOnTouchListener { _, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    spaceTouchStartX = event.x
+                }
+                MotionEvent.ACTION_UP -> {
+                    val touchDeltaX = event.x - spaceTouchStartX
+                    if (touchDeltaX < -100) {
+                        actionHandler.onSpaceGestureMove(-1)
+                        return@setOnTouchListener true
+                    }
+                    if (touchDeltaX > 100) {
+                        actionHandler.onSpaceGestureMove(1)
+                        return@setOnTouchListener true
+                    }
+                }
+            }
+            false
         }
 
         rootView.findViewById<Button>(R.id.keyEnter)?.setOnClickListener {
@@ -242,6 +382,18 @@ class KeyboardViewManager(
 
         rootView.findViewById<Button>(R.id.keyEmoji)?.setOnClickListener {
             actionHandler.onEmojiClicked()
+        }
+
+        voiceButton?.setOnClickListener {
+            actionHandler.onVoiceTypingClicked()
+        }
+
+        clipboardButton?.setOnClickListener {
+            showClipboardPanel(clipboardPanel?.visibility != View.VISIBLE)
+        }
+
+        languageIndicator?.setOnClickListener {
+            actionHandler.onLanguageSwitchPressed()
         }
 
         previewActionButton?.setOnClickListener {
@@ -304,6 +456,23 @@ class KeyboardViewManager(
         }
     }
 
+    private fun bindEmojiSearch() {
+        emojiSearchInput?.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                updateEmojiButtons(s?.toString().orEmpty())
+            }
+            override fun afterTextChanged(s: Editable?) {}
+        })
+    }
+
+    private fun bindClipboardControls() {
+        clipboardClearButton?.setOnClickListener {
+            settingsRepository.clearClipboardHistory()
+            refreshClipboardHistory()
+        }
+    }
+
     private fun bindPanelCloseButton() {
         panelCloseKeyboard?.setOnClickListener {
             showEmojiPanel(false)
@@ -313,8 +482,17 @@ class KeyboardViewManager(
     private fun applyPreferences() {
         val showNumberRow = settingsRepository.isNumberRowEnabled()
         numberRow?.visibility = if (showNumberRow) View.VISIBLE else View.GONE
-
         suggestionBarManager.setSuggestionsEnabled(settingsRepository.isSuggestionsEnabled())
+        setVoiceTypingEnabled(settingsRepository.isVoiceTypingEnabled())
+        isSymbolMode = false
+        currentLanguage = settingsRepository.getCurrentLanguage()
+        applyLanguageLabels(currentLanguage)
+        updateOneHandedMode(settingsRepository.isOneHandedModeEnabled())
+    }
+
+    private fun updateOneHandedMode(enabled: Boolean) {
+        val padding = if (enabled) 60 else 0
+        keyboardKeysContainer?.setPadding(24, 0, padding, 0)
     }
 
     fun applyTheme(theme: KeyboardTheme) {
@@ -351,6 +529,28 @@ class KeyboardViewManager(
 
         allKeyIds.forEach { keyId ->
             rootView.findViewById<Button>(keyId)?.setTextColor(textColor)
+        }
+    }
+
+    private fun updateEmojiButtons(query: String) {
+        val filtered = if (query.isBlank()) {
+            emojiList
+        } else {
+            emojiList.filter { emoji ->
+                emojiKeywords[emoji]?.any { it.contains(query, ignoreCase = true) } == true || emoji.contains(query)
+            }.take(10).ifEmpty { emojiList.take(10) }
+        }
+
+        val emojiButtons = listOf(
+            R.id.emojiButton1, R.id.emojiButton2, R.id.emojiButton3, R.id.emojiButton4, R.id.emojiButton5,
+            R.id.emojiButton6, R.id.emojiButton7, R.id.emojiButton8, R.id.emojiButton9, R.id.emojiButton10
+        )
+
+        emojiButtons.forEachIndexed { index, keyId ->
+            rootView.findViewById<Button>(keyId)?.apply {
+                text = filtered.getOrNull(index).orEmpty()
+                visibility = if (index < filtered.size) View.VISIBLE else View.GONE
+            }
         }
     }
 }

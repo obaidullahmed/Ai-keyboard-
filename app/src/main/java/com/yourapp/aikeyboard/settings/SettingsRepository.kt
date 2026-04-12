@@ -22,6 +22,7 @@ class SettingsRepository(context: Context) {
         private const val KEY_PUNCTUATION_ASSIST = "punctuation_assist_enabled"
         private const val KEY_GLIDE_TYPING = "glide_typing_enabled"
         private const val KEY_VOICE_TYPING = "voice_typing_enabled"
+        private const val KEY_ONE_HANDED = "one_handed_mode_enabled"
         private const val KEY_EMOJI_SUGGESTIONS = "emoji_suggestions_enabled"
         private const val KEY_STICKER_PANEL = "sticker_panel_enabled"
         private const val KEY_THEME = "keyboard_theme"
@@ -83,6 +84,9 @@ class SettingsRepository(context: Context) {
 
     fun isVoiceTypingEnabled(): Boolean = prefs.getBoolean(KEY_VOICE_TYPING, false)
     fun setVoiceTypingEnabled(enabled: Boolean) = prefs.edit().putBoolean(KEY_VOICE_TYPING, enabled).apply()
+
+    fun isOneHandedModeEnabled(): Boolean = prefs.getBoolean(KEY_ONE_HANDED, false)
+    fun setOneHandedModeEnabled(enabled: Boolean) = prefs.edit().putBoolean(KEY_ONE_HANDED, enabled).apply()
 
     fun isEmojiSuggestionsEnabled(): Boolean = prefs.getBoolean(KEY_EMOJI_SUGGESTIONS, false)
     fun setEmojiSuggestionsEnabled(enabled: Boolean) = prefs.edit().putBoolean(KEY_EMOJI_SUGGESTIONS, enabled).apply()

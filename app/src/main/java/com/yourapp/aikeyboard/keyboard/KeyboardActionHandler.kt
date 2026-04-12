@@ -6,6 +6,7 @@ import android.view.SoundEffectConstants
 import android.view.inputmethod.InputConnection
 import com.yourapp.aikeyboard.ai.AiReplyManager
 import com.yourapp.aikeyboard.ai.ToneMode
+import com.yourapp.aikeyboard.keyboard.TypingAssistant
 import com.yourapp.aikeyboard.settings.SettingsRepository
 
 /**
@@ -23,6 +24,7 @@ class KeyboardActionHandler(
     private var lastCharacter: Char? = null
     private var isShiftActive: Boolean = false
     private var currentAiManager: AiReplyManager? = null
+    private var currentPendingFragment: String = ""
 
     fun setAiManager(aiManager: AiReplyManager) {
         currentAiManager = aiManager
@@ -36,19 +38,38 @@ class KeyboardActionHandler(
         }
 
         textCommitManager.commitText(commitText)
+        updatePendingFragment(commitText)
         lastCharacter = commitText.lastOrNull()
+
         if (isShiftActive) {
             isShiftActive = false
             if (service is AiKeyboardService) {
                 service.updateShiftState(false)
             }
         }
+
+        if (service is AiKeyboardService) {
+            service.handleTypingUpdate()
+        }
         provideFeedback()
     }
 
     fun onBackspace() {
         textCommitManager.deletePreviousCharacter()
+        currentPendingFragment = ""
         lastCharacter = null
+        if (service is AiKeyboardService) {
+            service.handleTypingUpdate()
+        }
+        provideFeedback()
+    }
+
+    fun onBackspaceWord() {
+        textCommitManager.deletePreviousWord()
+        currentPendingFragment = ""
+        if (service is AiKeyboardService) {
+            service.handleTypingUpdate()
+        }
         provideFeedback()
     }
 
@@ -59,20 +80,83 @@ class KeyboardActionHandler(
                 inputConnection?.deleteSurroundingText(1, 0)
                 textCommitManager.commitText(". ")
                 lastCharacter = '.'
+                currentPendingFragment = ""
+                if (service is AiKeyboardService) {
+                    service.handleTypingUpdate()
+                }
                 provideFeedback()
                 return
             }
         }
 
-        textCommitManager.commitText(" ")
+        val beforeText = inputConnection?.getTextBeforeCursor(64, 0)?.toString().orEmpty()
+        val lastWord = beforeText.trimEnd().split(" ").lastOrNull().orEmpty()
+        val correctedWord = if (settingsRepository.isAutoCorrectEnabled() && lastWord.isNotBlank()) {
+            TypingAssistant.suggestCorrection(lastWord, settingsRepository.getCurrentLanguage())
+        } else {
+            null
+        }
+
+        if (correctedWord != null && correctedWord != lastWord) {
+            textCommitManager.replacePreviousWord(lastWord, "$correctedWord ")
+        } else {
+            textCommitManager.commitText(" ")
+        }
+
+        currentPendingFragment = ""
+        if (service is AiKeyboardService) {
+            service.handleTypingUpdate()
+        }
         lastCharacter = ' '
         provideFeedback()
     }
 
     fun onEnter() {
         textCommitManager.commitText("\n")
+        currentPendingFragment = ""
         lastCharacter = '\n'
+        if (service is AiKeyboardService) {
+            service.handleTypingUpdate()
+        }
         provideFeedback()
+    }
+
+    fun onShiftToggled() {
+        isShiftActive = !isShiftActive
+        if (service is AiKeyboardService) {
+            service.updateShiftState(isShiftActive)
+        }
+        provideFeedback()
+    }
+
+    fun onAiButtonClicked() {
+        if (service is AiKeyboardService) {
+            service.handleAiActionRequest()
+        }
+    }
+
+    fun onVoiceTypingClicked() {
+        if (service is AiKeyboardService) {
+            service.handleVoiceTypingRequest()
+        }
+    }
+
+    fun onLanguageSwitchPressed() {
+        if (service is AiKeyboardService) {
+            service.handleLanguageSwitchRequest()
+        }
+    }
+
+    fun onSwitchModeClicked() {
+        if (service is AiKeyboardService) {
+            service.toggleKeyboardMode()
+        }
+    }
+
+    fun onEmojiClicked() {
+        if (service is AiKeyboardService) {
+            service.toggleEmojiPanel()
+        }
     }
 
     fun onShiftToggled() {
@@ -99,6 +183,26 @@ class KeyboardActionHandler(
         if (service is AiKeyboardService) {
             service.toggleEmojiPanel()
         }
+    }
+
+    fun onPasteClipboardText(text: String) {
+        if (text.isBlank()) return
+        val selectedBounds = textCommitManager.getSelectionBounds()
+        if (selectedBounds != null) {
+            textCommitManager.replaceOrInsertText(text, selectedBounds.first, selectedBounds.second)
+        } else {
+            textCommitManager.commitText(text)
+        }
+        currentPendingFragment = ""
+        if (service is AiKeyboardService) {
+            service.handleTypingUpdate()
+        }
+        provideFeedback()
+    }
+
+    fun onSpaceGestureMove(offset: Int) {
+        textCommitManager.moveCursorBy(offset)
+        provideFeedback()
     }
 
     /**
@@ -164,11 +268,29 @@ class KeyboardActionHandler(
         val selectedBounds = textCommitManager.getSelectionBounds()
         if (selectedBounds != null) {
             textCommitManager.replaceOrInsertText(text, selectedBounds.first, selectedBounds.second)
+        } else if (currentPendingFragment.isNotBlank() && text.startsWith(currentPendingFragment, ignoreCase = true)) {
+            textCommitManager.replacePreviousWord(currentPendingFragment, text)
         } else {
             textCommitManager.commitText(text)
         }
 
+        currentPendingFragment = ""
+        if (service is AiKeyboardService) {
+            service.handleTypingUpdate()
+        }
         provideFeedback()
+    }
+
+    private fun updatePendingFragment(commitText: String) {
+        if (commitText.isBlank() || commitText.last().isWhitespace() || commitText.last() in listOf('.', ',', '!', '?', ':', ';')) {
+            currentPendingFragment = ""
+            return
+        }
+
+        currentPendingFragment += commitText
+        if (currentPendingFragment.length > 32) {
+            currentPendingFragment = currentPendingFragment.takeLast(32)
+        }
     }
 
     private fun shouldAutoCap(): Boolean {
