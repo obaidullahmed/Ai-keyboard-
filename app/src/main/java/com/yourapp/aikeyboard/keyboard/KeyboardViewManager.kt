@@ -479,7 +479,7 @@ class KeyboardViewManager(
         }
     }
 
-    private fun applyPreferences() {
+    internal fun applyPreferences() {
         val showNumberRow = settingsRepository.isNumberRowEnabled()
         numberRow?.visibility = if (showNumberRow) View.VISIBLE else View.GONE
         suggestionBarManager.setSuggestionsEnabled(settingsRepository.isSuggestionsEnabled())

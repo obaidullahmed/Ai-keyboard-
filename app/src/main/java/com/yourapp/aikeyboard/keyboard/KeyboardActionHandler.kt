@@ -159,32 +159,6 @@ class KeyboardActionHandler(
         }
     }
 
-    fun onShiftToggled() {
-        isShiftActive = !isShiftActive
-        if (service is AiKeyboardService) {
-            service.updateShiftState(isShiftActive)
-        }
-        provideFeedback()
-    }
-
-    fun onAiButtonClicked() {
-        if (service is AiKeyboardService) {
-            service.handleAiActionRequest()
-        }
-    }
-
-    fun onSwitchModeClicked() {
-        if (service is AiKeyboardService) {
-            service.toggleKeyboardMode()
-        }
-    }
-
-    fun onEmojiClicked() {
-        if (service is AiKeyboardService) {
-            service.toggleEmojiPanel()
-        }
-    }
-
     fun onPasteClipboardText(text: String) {
         if (text.isBlank()) return
         val selectedBounds = textCommitManager.getSelectionBounds()

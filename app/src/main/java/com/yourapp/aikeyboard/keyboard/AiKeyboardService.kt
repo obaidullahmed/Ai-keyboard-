@@ -106,7 +106,7 @@ class AiKeyboardService : InputMethodService() {
     }
 
     internal fun toggleKeyboardMode() {
-        keyboardViewManager.cycleKeyboardMode()
+        keyboardViewManager.toggleKeyboardMode()
     }
 
     internal fun toggleEmojiPanel() {
